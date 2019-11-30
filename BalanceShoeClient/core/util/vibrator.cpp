@@ -5,7 +5,7 @@
 
 using namespace haevn::esp::util;
 
-Vibrator::Vibrator(QObject *parent) : QObject(parent){
+Vibrator::Vibrator() : QObject(){
 
 #if 0 // defined(Q_OS_ANDROID)
     QAndroidJniObject vibroString = QAndroidJniObject::fromString("vibrator");
@@ -40,18 +40,14 @@ void Vibrator::vibrate(int milliseconds) {
 
 #else
 
-
-void Vibrator::vibrateStop(){
-
-}
+void Vibrator::vibrateStop(){}
 
 void Vibrator::vibrate(){
    vibrate(600000);
 }
 
 void Vibrator::vibrate(int milliseconds) {
-    Q_UNUSED(milliseconds);
+    Q_UNUSED(milliseconds)
 }
-
 
 #endif

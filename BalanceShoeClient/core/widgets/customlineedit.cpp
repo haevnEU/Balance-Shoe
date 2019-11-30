@@ -9,19 +9,15 @@ CustomLineEdit::CustomLineEdit(QWidget* parent) : QLineEdit(parent){
 }
 
 void CustomLineEdit::focusInEvent(QFocusEvent *e){
-  QLineEdit::focusInEvent(e);
-    QInputMethod* kb = QGuiApplication::inputMethod();
-    kb->show();
-  emit(focussed(true));
+    QLineEdit::focusInEvent(e);
+    QGuiApplication::inputMethod()->show();
+    emit(focussed(true));
 }
 
 void CustomLineEdit::focusOutEvent(QFocusEvent *e){
-  QLineEdit::focusOutEvent(e);
-
-  QInputMethod* kb = QGuiApplication::inputMethod();
-  kb->hide();
-
-  emit(focussed(false));
+      QLineEdit::focusOutEvent(e);
+      QGuiApplication::inputMethod()->hide();
+      emit(focussed(false));
 }
 
 #endif // defined(Q_OS_ANDROID)

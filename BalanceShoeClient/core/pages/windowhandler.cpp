@@ -9,7 +9,7 @@ using namespace haevn::esp::pages;
 WindowHandler::WindowHandler(){
     introPage = new IntroPage;
     mainPage = new MainPage;
-    settingsPage = new SettingsPage;
+    developerSettingsPage = new SettingsPage;
     userSettingsPage = new UserSettings();
     lastPage = nullptr;
 }
@@ -17,7 +17,7 @@ WindowHandler::WindowHandler(){
 WindowHandler::~WindowHandler(){
     delete introPage;
     delete mainPage;
-    delete settingsPage;
+    delete developerSettingsPage;
     delete userSettingsPage;
 }
 
@@ -34,7 +34,7 @@ void WindowHandler::show(windows window){
             currentPage = mainPage;
         break;
         case windows::settingsWindow:
-            currentPage = settingsPage;
+            currentPage = developerSettingsPage;
         break;
         case windows::statisticsWindow:
         break;
@@ -42,7 +42,7 @@ void WindowHandler::show(windows window){
             currentPage = userSettingsPage;
         break;
         case windows::devSettingsWindow:
-            currentPage = settingsPage;
+            currentPage = developerSettingsPage;
         break;
     }
     currentPage->show();

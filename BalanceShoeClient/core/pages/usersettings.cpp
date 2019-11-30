@@ -13,13 +13,8 @@ UserSettings::UserSettings(QWidget *parent) : QWidget(parent){
     auto scrollArea = new QScrollArea(this);
 #endif
 
-
-    //layout->addLayout(createSettingsGroup());
     setLayout(createLayout());
-
-   // connect(comboBoxTheme, &QComboBox::currentIndexChanged, this, &SettingsPage::currentIndexChanged);
 }
-
 
 void UserSettings::currentIndexChanged(int index){
     switch(index){
@@ -47,7 +42,7 @@ void UserSettings::currentIndexChanged(int index){
 #if defined(Q_OS_ANDROID)
 QLayout* UserSettings::createLayout(){
 
-    QGridLayout* layout = new QGridLayout();
+    auto layout = new QGridLayout();
 
     inputName = new widgets::CustomLineEdit();
     inputWeight = new widgets::CustomLineEdit();
@@ -67,11 +62,11 @@ QLayout* UserSettings::createLayout(){
     comboBoxTheme->addItem("Ubuntu");
 
 
-    QLabel* labelName = new QLabel("Name");
-    QLabel* labelWeight = new QLabel("Weight");
-    QLabel* labelMaxWeight = new QLabel("Max weight");
-    QLabel* labelThemes = new QLabel("Theme");
-    QPushButton* btBack = new QPushButton("Back");
+    auto labelName = new QLabel("Name");
+    auto labelWeight = new QLabel("Weight");
+    auto labelMaxWeight = new QLabel("Max weight");
+    auto labelThemes = new QLabel("Theme");
+    auto btBack = new QPushButton("Back");
 
     labelMaxWeight->setFont(font);
     labelWeight->setFont(font);
@@ -119,17 +114,15 @@ QLayout* UserSettings::createLayout(){
 #include <QMessageBox>
 
 void UserSettings::buttonSavePressed(){
-
-    QString name = inputName->text();
-    int weight = inputWeight->text().toInt();
-    int maxWeight = inputMaxWeight->text().toInt();
+    auto name = inputName->text();
+    auto weight = inputWeight->text().toInt();
+    auto maxWeight = inputMaxWeight->text().toInt();
     QMessageBox::question(this, "Info", QString("Name").append(name)
                                         .append("\nWeight: ").append(QString::number(weight))
                                         .append("\nMax weght: ").append(QString::number(maxWeight)));
 }
 
 void UserSettings::buttonBackPressed(){
-
     auto& wd = WindowHandler::getWindowHandler();
     wd.show(windows::mainWindow);
 }

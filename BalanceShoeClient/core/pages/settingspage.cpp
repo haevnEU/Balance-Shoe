@@ -4,21 +4,17 @@
 #include <iostream>
 #include <QDebug>
 #include <QScrollArea>
-
+#include <QMessageBox>
 
 using namespace haevn::esp::pages;
 
 SettingsPage::SettingsPage(QWidget* parent) : QWidget(parent){
-
     setLayout(createLayout());
 }
-
-
 
 #if defined(Q_OS_ANDROID)
 
 QLayout* SettingsPage::createLayout(){
-
     inputBAUD = new widgets::CustomLineEdit;
     inputDOutPin = new widgets::CustomLineEdit;
     inputSCKPint = new widgets::CustomLineEdit;
@@ -106,12 +102,10 @@ QLayout* SettingsPage::createLayout(){
     inputTolerance = new QLineEdit;
     inputScaleValue = new QLineEdit;
 }
-#endif
+#endif // defined(Q_OS_ANDROID)
 
-#include <QMessageBox>
 
 void SettingsPage::buttonSavePressed(){
-
     QString msg("");
     msg.append("BAUD: ").append(QString::number(inputBAUD->text().toInt())).append("\n");
     msg.append("DOUT pin: ").append(QString::number(inputDOutPin->text().toInt())).append("\n");
@@ -130,12 +124,14 @@ void SettingsPage::buttonBackPressed(){
 
 void SettingsPage::buttonLottoPressed(){
 
-    QString msg("Hier sind die kommenden Lotto zahlen(alle angaben ohne einem Gewehr)\n");
+    QString msg("Hier sind die kommenden Lotto zahlen(alle angaben ohne einem Gewehr)\nLottozahlen: ");
     int nmbr;
-    srand(time(0));
+    srand(time(NULL));
     for(int i = 0; i < 6; i++){
         nmbr = rand() % 48 + 1;
         msg.append(QString::number(nmbr)).append(" ");
     }
+    nmbr = rand() % 48 + 1;
+    msg.append("\n").append("Supperzahl: ").append(QString::number(nmbr));
     QMessageBox::information(this, "Lottozahlen", msg);
 }

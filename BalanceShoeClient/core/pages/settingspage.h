@@ -1,3 +1,10 @@
+/**
+ * @file settingspage.h
+ * @brief Provides the logic to handle the developer settings
+ * @details This file contains the logic for the developer settings.
+ * @author Nils Milewski (nimile/10010480)
+ */
+
 #ifndef SETTINGSPAGE_H
 #define SETTINGSPAGE_H
 
@@ -21,6 +28,14 @@
 #endif
 
 namespace haevn::esp::pages{
+
+    /**
+     * @brief The SettingsPage class
+     * @details This class should only be available during the development of the project.
+     *          Later it should be placed in a separate support app therefore no documentation
+     *          will be provided.
+     * @author Nils Milewski (nimile/10010480)
+     */
     class SettingsPage : public QWidget{
 
         Q_OBJECT
