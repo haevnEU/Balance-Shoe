@@ -45,6 +45,7 @@ HEADERS += \
     core/widgets/customlineedit.h
 
 SOURCES += \
+    core/main.cpp \
     core/pages/intropage.cpp \
     core/pages/mainpage.cpp \
     core/pages/settingspage.cpp \

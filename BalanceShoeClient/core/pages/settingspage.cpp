@@ -131,7 +131,7 @@ void SettingsPage::buttonLottoPressed(){
         nmbr = rand() % 48 + 1;
         msg.append(QString::number(nmbr)).append(" ");
     }
-    nmbr = rand() % 48 + 1;
+    nmbr = rand() % 10;
     msg.append("\n").append("Supperzahl: ").append(QString::number(nmbr));
     QMessageBox::information(this, "Lottozahlen", msg);
 }
