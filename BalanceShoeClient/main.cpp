@@ -5,14 +5,15 @@
  */
 
 #include <QApplication>
-#include "pages/windowhandler.h"
+#include "core/windowhandler.h"
+#include "core/usersettings.h"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    haevn::esp::pages::WindowHandler::getWindowHandler().show(haevn::esp::pages::windows::introWindow);
-    haevn::esp::pages::WindowHandler::getWindowHandler().changeTheme("MaterialDark");
+    haevn::esp::core::UserSettings::getUserSettings();
+    haevn::esp::core::WindowHandler::getWindowHandler().show(haevn::esp::core::windows::introWindow);
 
     return a.exec();
 }

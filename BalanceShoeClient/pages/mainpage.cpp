@@ -1,5 +1,9 @@
 #include "mainpage.h"
-#include "windowhandler.h"
+#include "core/windowhandler.h"
+
+#include "util/filehandler.h"
+#include <QHBoxLayout>
+#include <QMessageBox>
 
 using namespace haevn::esp::pages;
 
@@ -50,6 +54,32 @@ MainPage::MainPage(QWidget *parent) : QWidget(parent){
     connect(buttonOff, &QPushButton::pressed, this, &MainPage::buttonOffPressed);
     connect(buttonStat, &QPushButton::pressed, this, &MainPage::buttonDevPressed);
     connect(buttonUserSettings, &QPushButton::pressed, this, &MainPage::buttonShowUserSettings);
+
+
+
+
+
+
+
+    auto btSave = new QPushButton("Save");
+    auto btLoad = new QPushButton("Load");
+
+
+    connect(btSave, &QPushButton::clicked, [this]()
+    {
+        util::FileHandler::getFileHandler().save("TEST", "dummy.txt");
+    });
+
+    connect(btLoad, &QPushButton::clicked, [this]()
+    {
+        QString tmp = util::FileHandler::getFileHandler().read("user.set");
+        QMessageBox::information(this, "Info", tmp);
+    });
+
+    auto hbox = new QHBoxLayout();
+    hbox->addWidget(btSave);
+    hbox->addWidget(btLoad);
+    layout->addLayout(hbox);
 }
 
 
@@ -66,9 +96,9 @@ void MainPage::buttonOffPressed(){
 }
 
 void MainPage::buttonShowUserSettings(){
-    WindowHandler::getWindowHandler().show(windows::userSettingsWindow);
+    core::WindowHandler::getWindowHandler().show(core::windows::userSettingsWindow);
 }
 
 void MainPage::buttonDevPressed(){
-    WindowHandler::getWindowHandler().show(windows::settingsWindow);
+    core::WindowHandler::getWindowHandler().show(core::windows::settingsWindow);
 }

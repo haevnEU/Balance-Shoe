@@ -1,6 +1,6 @@
 #include "settingspage.h"
 
-#include "windowhandler.h"
+#include "core/windowhandler.h"
 #include <iostream>
 #include <QDebug>
 #include <QScrollArea>
@@ -118,8 +118,7 @@ void SettingsPage::buttonSavePressed(){
 }
 
 void SettingsPage::buttonBackPressed(){
-    auto& wd = WindowHandler::getWindowHandler();
-    wd.show(windows::mainWindow);
+    core::WindowHandler::getWindowHandler().show(core::windows::mainWindow);
 }
 
 void SettingsPage::buttonLottoPressed(){

@@ -13,14 +13,14 @@
 #include <QObject>      // Used as baseclass
 
 /* User includes */
-#include "intropage.h"
-#include "mainpage.h"
-#include "settingspage.h"
-#include "usersettings.h"
+#include "../pages/intropage.h"
+#include "../pages/mainpage.h"
+#include "../pages/settingspage.h"
+#include "../pages/usersettingsPage.h"
 
 #include "../util/utils.h"  // Used to access application utilities
 
-namespace haevn::esp::pages{
+namespace haevn::esp::core{
 
     /**
      * @brief The windows enum This enumeration is used to determine different pages.
@@ -112,22 +112,22 @@ namespace haevn::esp::pages{
         /**
          * @brief mainPage This attribute holds the main page
          */
-        MainPage* mainPage;
+        pages::MainPage* mainPage;
 
         /**
          * @brief introPage This attribute holds the intro page
          */
-        IntroPage* introPage;
+        pages::IntroPage* introPage;
 
         /**
          * @brief settingsPage This attribute holds the developer settings page
          */
-        SettingsPage* developerSettingsPage;
+        pages::SettingsPage* developerSettingsPage;
 
         /**
          * @brief userSettingsPage This attribute holds the user settings page
          */
-        UserSettings* userSettingsPage;
+        pages::UserSettingsPage* userSettingsPage;
 
     };
 }

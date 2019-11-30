@@ -48,6 +48,11 @@ namespace haevn::esp::util{
          * @author Nils Milewski (nimile/10010480)
          */
         virtual ~FileHandler();
+
+    public methods:
+        void save(QString data, QString path);
+
+        QString read(QString path);
     };
 }
 #endif // FILEHANDLER_H

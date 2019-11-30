@@ -1,5 +1,5 @@
 #include "intropage.h"
-#include "windowhandler.h"  // Used to access another window
+#include "core/windowhandler.h"  // Used to access another window
 
 using namespace haevn::esp::pages;
 
@@ -25,5 +25,5 @@ IntroPage::IntroPage(QWidget *parent) : QWidget(parent){
 }
 
 void IntroPage::buttonStartSetupPressed(){
-    haevn::esp::pages::WindowHandler::getWindowHandler().show(haevn::esp::pages::windows::mainWindow);
+    haevn::esp::core::WindowHandler::getWindowHandler().show(haevn::esp::core::windows::mainWindow);
 }

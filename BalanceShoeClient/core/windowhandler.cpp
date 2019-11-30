@@ -3,15 +3,19 @@
 #include <QDebug>
 #include <QFile>
 #include <QApplication>
+#include "../util/filehandler.h"
+#include "usersettings.h"
 
-using namespace haevn::esp::pages;
+using namespace haevn::esp::core;
 
 WindowHandler::WindowHandler(){
-    introPage = new IntroPage;
-    mainPage = new MainPage;
-    developerSettingsPage = new SettingsPage;
-    userSettingsPage = new UserSettings();
+    introPage = new pages::IntroPage;
+    mainPage = new pages::MainPage;
+    developerSettingsPage = new pages::SettingsPage;
+    userSettingsPage = new pages::UserSettingsPage();
     lastPage = nullptr;
+
+    changeTheme(UserSettings::getUserSettings().getThemeName());
 }
 
 WindowHandler::~WindowHandler(){

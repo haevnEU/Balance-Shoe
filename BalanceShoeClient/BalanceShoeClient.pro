@@ -26,31 +26,41 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 android: QT += androidextras
 
 DISTFILES += \
-    android-sources/AndroidManifest.xml
+    android-sources/AndroidManifest.xml \
+    styles/AMOLED.qss \
+    styles/Aqua.qss \
+    styles/ConsoleStyle.qss \
+    styles/ElegantDark.qss \
+    styles/LICENSE \
+    styles/MaterialDark.qss \
+    styles/Ubuntu.qss
 
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android-sources
 
 RESOURCES += \
+    themes.qrc \
     themes.qrc
 
 HEADERS += \
-    core/pages/intropage.h \
-    core/pages/mainpage.h \
-    core/pages/settingspage.h \
-    core/pages/usersettings.h \
-    core/pages/windowhandler.h \
-    core/util/filehandler.h \
-    core/util/utils.h \
-    core/util/vibrator.h \
-    core/widgets/customlineedit.h
+    core/usersettings.h \
+    core/windowhandler.h \
+    pages/intropage.h \
+    pages/mainpage.h \
+    pages/settingspage.h \
+    pages/usersettingsPage.h \
+    util/filehandler.h \
+    util/utils.h \
+    util/vibrator.h \
+    widgets/customlineedit.h
 
 SOURCES += \
-    core/main.cpp \
-    core/pages/intropage.cpp \
-    core/pages/mainpage.cpp \
-    core/pages/settingspage.cpp \
-    core/pages/usersettings.cpp \
-    core/pages/windowhandler.cpp \
-    core/util/filehandler.cpp \
-    core/util/vibrator.cpp \
-    core/widgets/customlineedit.cpp
+    core/usersettings.cpp \
+    core/windowhandler.cpp \
+    main.cpp \
+    pages/intropage.cpp \
+    pages/mainpage.cpp \
+    pages/settingspage.cpp \
+    pages/usersettingsPage.cpp \
+    util/filehandler.cpp \
+    util/vibrator.cpp \
+    widgets/customlineedit.cpp

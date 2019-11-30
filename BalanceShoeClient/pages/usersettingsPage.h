@@ -10,8 +10,8 @@
  * @author Nils Milewski (nimile/10010480)
  */
 
-#ifndef USERSETTINGS_H
-#define USERSETTINGS_H
+#ifndef USERSETTINGSPAGE_H
+#define USERSETTINGSPAGE_H
 
 /* Qt widgets */
 #include <QWidget>      // Used as base class
@@ -26,6 +26,7 @@
 
 /* Project includes */
 #include "../util/utils.h"              // Used to access project utilities
+#include "../core/usersettings.h"
 #include "../widgets/customlineedit.h"  // Used to enable touch interaction for QLineEdit
 
 namespace haevn::esp::pages{
@@ -35,14 +36,13 @@ namespace haevn::esp::pages{
      * @details This class contains the logic and UI for the user settings.
      * @author Nils Milewski (nimile/10010480)
      */
-    class UserSettings: public QWidget{
+    class UserSettingsPage : public QWidget{
 
         Q_OBJECT
 
     private attributes:
 
         QFont font;
-
     #if defined(Q_OS_ANDROID)
         // This attribute will be used if the compiler is android
         widgets::CustomLineEdit* inputName;
@@ -70,7 +70,7 @@ namespace haevn::esp::pages{
          * @param parent This is the parrent object of this page, default nullptr.
          * @author Nils Milewski (nimile/10010480)
          */
-        UserSettings(QWidget* parent = nullptr);
+        UserSettingsPage(QWidget* parent = nullptr);
 
     private methods:
 
@@ -109,6 +109,15 @@ namespace haevn::esp::pages{
          * @author Nils Milewski (nimile/10010480)
          */
         void buttonSavePressed();
+
+        void userNameChanged(QString name);
+
+        void userWeightChanged(uint weight);
+
+        void maxWeightChanged(uint weight);
+
+        void themeChanged(QString name);
+
     };
 }
-#endif // USERSETTINGS_H
+#endif // USERSETTINGSPAGE_H
