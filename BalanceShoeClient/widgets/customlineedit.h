@@ -19,7 +19,7 @@
 /* Project includes */
 #include "../util/utils.h"  // Used to access project utilities
 
-#if defined(Q_OS_ANDROID)
+#if 1//defined(Q_OS_ANDROID)
 
 namespace haevn::esp::widgets{
 

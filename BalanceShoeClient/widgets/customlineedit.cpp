@@ -1,6 +1,6 @@
 #include "customlineedit.h"
 
-#if defined(Q_OS_ANDROID)
+#if 1//defined(Q_OS_ANDROID)
 
 using namespace haevn::esp::widgets;
 

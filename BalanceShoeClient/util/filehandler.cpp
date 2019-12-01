@@ -13,11 +13,17 @@ FileHandler::~FileHandler()
 }
 
 #include <QDebug>
+#include <QDir>
 #include <QFile>
+#include <QStandardPaths>
 void FileHandler::save(QString data, QString path){
 
+    QString appDataPath = QStandardPaths::standardLocations(QStandardPaths::AppDataLocation).value(0);
+    if (!QDir(appDataPath).exists()) {
+        QDir("").mkpath(appDataPath);
+    }
 
-    QFile file(path);
+    QFile file(appDataPath.append("/").append(path));
     if(!file.open(QIODevice::WriteOnly)) {
     }
     else
@@ -30,8 +36,12 @@ void FileHandler::save(QString data, QString path){
 
 QString FileHandler::read(QString path){
     QString data;
+    QString appDataPath = QStandardPaths::standardLocations(QStandardPaths::AppDataLocation).value(0);
+    if (!QDir(appDataPath).exists()) {
+        QDir("").mkpath(appDataPath);
+    }
 
-    QFile file(path);
+    QFile file(appDataPath.append("/").append(path));
     if(!file.open(QIODevice::ReadOnly)) {
     }
     else

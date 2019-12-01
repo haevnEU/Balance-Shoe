@@ -41,6 +41,7 @@ RESOURCES += \
     themes.qrc \
     themes.qrc \
     themes.qrc \
+    themes.qrc \
     themes.qrc
 
 HEADERS += \
@@ -55,6 +56,10 @@ HEADERS += \
     pages/Mac/macsettingspage.h \
     pages/Mac/macusersettingspage.h \
     pages/intropage.h \
+    pages/ios/iosintropage.h \
+    pages/ios/iosmainpage.h \
+    pages/ios/iossettingspage.h \
+    pages/ios/iosusersettingspage.h \
     pages/mainpage.h \
     pages/settingspage.h \
     pages/usersettingsPage.h \
@@ -80,6 +85,10 @@ SOURCES += \
     pages/Mac/macmainpage.cpp \
     pages/Mac/macsettingspage.cpp \
     pages/Mac/macusersettingspage.cpp \
+    pages/ios/iosintropage.cpp \
+    pages/ios/iosmainpage.cpp \
+    pages/ios/iossettingspage.cpp \
+    pages/ios/iosusersettingspage.cpp \
     pages/windows/winintropage.cpp \
     pages/windows/winmainpage.cpp \
     pages/windows/winsettingspage.cpp \
