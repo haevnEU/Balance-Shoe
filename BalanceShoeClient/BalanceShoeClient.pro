@@ -40,6 +40,7 @@ ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android-sources
 RESOURCES += \
     themes.qrc \
     themes.qrc \
+    themes.qrc \
     themes.qrc
 
 HEADERS += \
@@ -57,6 +58,10 @@ HEADERS += \
     pages/mainpage.h \
     pages/settingspage.h \
     pages/usersettingsPage.h \
+    pages/windows/winintropage.h \
+    pages/windows/winmainpage.h \
+    pages/windows/winsettingspage.h \
+    pages/windows/winusersettingspage.h \
     util/bluetoothutil.h \
     util/filehandler.h \
     util/utils.h \
@@ -75,6 +80,10 @@ SOURCES += \
     pages/Mac/macmainpage.cpp \
     pages/Mac/macsettingspage.cpp \
     pages/Mac/macusersettingspage.cpp \
+    pages/windows/winintropage.cpp \
+    pages/windows/winmainpage.cpp \
+    pages/windows/winsettingspage.cpp \
+    pages/windows/winusersettingspage.cpp \
     util/bluetoothutil.cpp \
     util/filehandler.cpp \
     util/vibrator.cpp \

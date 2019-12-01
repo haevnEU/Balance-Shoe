@@ -20,8 +20,8 @@ WindowHandler::WindowHandler(){
 WindowHandler::~WindowHandler(){
     delete introPage;
     delete mainPage;
-    delete developerSettingsPage;
     delete userSettingsPage;
+    delete developerSettingsPage;
 }
 
 void WindowHandler::show(windows window){
