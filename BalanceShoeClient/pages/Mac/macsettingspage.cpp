@@ -1,4 +1,27 @@
-#include "settingspage.h"
+/*
+ * Copyright 2019 nils
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to
+ * deal in the Software without restriction, including without limitation the
+ * rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+ * sell copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+ * IN THE SOFTWARE.
+ */
+#include "macsettingspage.h"
+
+#if defined(Q_OS_MAC)
 
 #include "core/windowhandler.h"
 #include <iostream>
@@ -8,19 +31,17 @@
 
 using namespace haevn::esp::pages;
 
-SettingsPage::SettingsPage(QWidget* parent) : QWidget(parent){
+MacSettingsPage::MacSettingsPage(QWidget* parent) : QWidget(parent){
     setLayout(createLayout());
 }
 
-#if defined(Q_OS_ANDROID)
-
-QLayout* SettingsPage::createLayout(){
-    inputBAUD = new widgets::CustomLineEdit;
-    inputDOutPin = new widgets::CustomLineEdit;
-    inputSCKPint = new widgets::CustomLineEdit;
-    inputReferenceWeight = new widgets::CustomLineEdit;
-    inputTolerance = new widgets::CustomLineEdit;
-    inputScaleValue = new widgets::CustomLineEdit;
+QLayout* MacSettingsPage::createLayout(){
+    inputBAUD = new QLineEdit;
+    inputDOutPin = new QLineEdit;
+    inputSCKPint = new QLineEdit;
+    inputReferenceWeight = new QLineEdit;
+    inputTolerance = new QLineEdit;
+    inputScaleValue = new QLineEdit;
 
     inputBAUD->setFont(font);
     inputDOutPin->setFont(font);
@@ -85,27 +106,15 @@ QLayout* SettingsPage::createLayout(){
     layout->setVerticalSpacing(20);
 
 
-    connect(btBack, &QPushButton::pressed, this, &SettingsPage::buttonBackPressed);
-    connect(buttonSaveSetup, &QPushButton::pressed, this, &SettingsPage::buttonSavePressed);
-    connect(btLotto, &QPushButton::pressed, this, &SettingsPage::buttonLottoPressed);
+    connect(btBack, &QPushButton::pressed, this, &MacSettingsPage::buttonBackPressed);
+    connect(buttonSaveSetup, &QPushButton::pressed, this, &MacSettingsPage::buttonSavePressed);
+    connect(btLotto, &QPushButton::pressed, this, &MacSettingsPage::buttonLottoPressed);
 
     return layout;
 
 }
-#else
 
-QLayout* SettingsPage::createLayout(){
-    inputBAUD = new QLineEdit;
-    inputDOutPin = new QLineEdit;
-    inputSCKPint = new QLineEdit;
-    inputReferenceWeight = new QLineEdit;
-    inputTolerance = new QLineEdit;
-    inputScaleValue = new QLineEdit;
-}
-#endif // defined(Q_OS_ANDROID)
-
-
-void SettingsPage::buttonSavePressed(){
+void MacSettingsPage::buttonSavePressed(){
     QString msg("");
     msg.append("BAUD: ").append(QString::number(inputBAUD->text().toInt())).append("\n");
     msg.append("DOUT pin: ").append(QString::number(inputDOutPin->text().toInt())).append("\n");
@@ -117,11 +126,11 @@ void SettingsPage::buttonSavePressed(){
     QMessageBox::information(this, "Input", msg);
 }
 
-void SettingsPage::buttonBackPressed(){
+void MacSettingsPage::buttonBackPressed(){
     core::WindowHandler::getWindowHandler().show(core::windows::mainWindow);
 }
 
-void SettingsPage::buttonLottoPressed(){
+void MacSettingsPage::buttonLottoPressed(){
 
     QString msg("Hier sind die kommenden Lotto zahlen(alle angaben ohne einem Gewehr)\nLottozahlen: ");
     int nmbr;
@@ -134,3 +143,5 @@ void SettingsPage::buttonLottoPressed(){
     msg.append("\n").append("Supperzahl: ").append(QString::number(nmbr));
     QMessageBox::information(this, "Lottozahlen", msg);
 }
+
+#endif // defined(Q_OS_MAC)

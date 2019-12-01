@@ -1,36 +1,54 @@
-#include "usersettingsPage.h"
+/*
+ * Copyright 2019 nils
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to
+ * deal in the Software without restriction, including without limitation the
+ * rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+ * sell copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+ * IN THE SOFTWARE.
+ */
+#include "androidusersettingspage.h"
+
+#if defined(Q_OS_ANDROID)
+
 #include "core/windowhandler.h"
 #include <QScrollArea>
 #include "core/usersettings.h"
 
 using namespace haevn::esp::pages;
 
-UserSettingsPage::UserSettingsPage(QWidget *parent) : QWidget(parent){
+AndroidUserSettingsPage::AndroidUserSettingsPage(QWidget *parent) : QWidget(parent){
     font = QWidget::font();
     font.setPointSize(24);
-
- #if defined(Q_OS_ANDROID)
-#else
-    auto scrollArea = new QScrollArea(this);
-#endif
 
     setLayout(createLayout());
     auto& userSettings = core::UserSettings::getUserSettings();
 
-    connect(&userSettings, &core::UserSettings::userNameChanged, this, &UserSettingsPage::userNameChanged);
-    connect(&userSettings, &core::UserSettings::userWeightChanged, this, &UserSettingsPage::userWeightChanged);
-    connect(&userSettings, &core::UserSettings::maxWeightChanged, this, &UserSettingsPage::maxWeightChanged);
-    connect(&userSettings, &core::UserSettings::themeChanged, this, &UserSettingsPage::themeChanged);
+    connect(&userSettings, &core::UserSettings::userNameChanged, this, &AndroidUserSettingsPage::userNameChanged);
+    connect(&userSettings, &core::UserSettings::userWeightChanged, this, &AndroidUserSettingsPage::userWeightChanged);
+    connect(&userSettings, &core::UserSettings::maxWeightChanged, this, &AndroidUserSettingsPage::maxWeightChanged);
+    connect(&userSettings, &core::UserSettings::themeChanged, this, &AndroidUserSettingsPage::themeChanged);
 }
 
-void UserSettingsPage::currentIndexChanged(int index){
+void AndroidUserSettingsPage::currentIndexChanged(int index){
     core::UserSettings::getUserSettings().setThemeName(index);
     core::WindowHandler::getWindowHandler().changeTheme(core::UserSettings::getUserSettings().indexToThemeName(index));
 
 }
 
-#if defined(Q_OS_ANDROID)
-QLayout* UserSettingsPage::createLayout(){
+QLayout* AndroidUserSettingsPage::createLayout(){
 
     auto layout = new QGridLayout();
 
@@ -50,6 +68,7 @@ QLayout* UserSettingsPage::createLayout(){
     for(auto theme : core::UserSettings::getUserSettings().getThemes()){
         comboBoxTheme->addItem(theme);
     }
+    comboBoxTheme->setCurrentIndex(core::UserSettings::getUserSettings().themeNameToIndex());
 
     auto labelName = new QLabel("Name");
     auto labelWeight = new QLabel("Weight");
@@ -75,34 +94,25 @@ QLayout* UserSettingsPage::createLayout(){
     layout->addWidget(labelThemes, 3, 0);
     layout->addWidget(comboBoxTheme, 3, 1);
 
-    layout->addWidget(buttonSaveSettings, 4, 1);
+    layout->addWidget(buttonSaveSettings, 5, 1);
 
 
-    layout->addWidget(btBack, 5, 0, 1, 2);
+    layout->addWidget(btBack, 6, 0, 1, 2);
 
     layout->setHorizontalSpacing(10);
     layout->setVerticalSpacing(10);
 
 
     connect(comboBoxTheme, SIGNAL(currentIndexChanged(int)), this, SLOT(currentIndexChanged(int)));
-    connect(btBack, &QPushButton::pressed, this, &UserSettingsPage::buttonBackPressed);
-    connect(buttonSaveSettings, &QPushButton::pressed, this, &UserSettingsPage::buttonSavePressed);
+    connect(btBack, &QPushButton::pressed, this, &AndroidUserSettingsPage::buttonBackPressed);
+    connect(buttonSaveSettings, &QPushButton::pressed, this, &AndroidUserSettingsPage::buttonSavePressed);
 
     return layout;
 }
-#else
-QLayout* UserSettings::createLayout(){
-    inputName = new QLineEdit();
-    inputWeight = new  QLineEdit;
-    inputMaxWeight = new  QLineEdit;
-    comboBoxTheme = new QComboBox();
-    buttonSaveSettings = new QPushButton("Save");
-}
 
-#endif
 #include <QMessageBox>
-#include "../util/filehandler.h"
-void UserSettingsPage::buttonSavePressed(){
+#include "util/filehandler.h"
+void AndroidUserSettingsPage::buttonSavePressed(){
     auto name = inputName->text();
     auto weight = inputWeight->text().toUInt();
     auto maxWeight = inputMaxWeight->text().toUInt();
@@ -112,23 +122,25 @@ void UserSettingsPage::buttonSavePressed(){
     core::UserSettings::getUserSettings().save();
 }
 
-void UserSettingsPage::buttonBackPressed(){
+void AndroidUserSettingsPage::buttonBackPressed(){
     auto& wd = core::WindowHandler::getWindowHandler();
     wd.show(core::windows::mainWindow);
 }
 
-void UserSettingsPage::userNameChanged(QString name){
+void AndroidUserSettingsPage::userNameChanged(QString name){
     inputName->setText(name);
 }
 
-void UserSettingsPage::userWeightChanged(uint weight){
+void AndroidUserSettingsPage::userWeightChanged(uint weight){
     inputWeight->setText(QString::number(weight));
 }
 
-void UserSettingsPage::maxWeightChanged(uint weight){
+void AndroidUserSettingsPage::maxWeightChanged(uint weight){
     inputMaxWeight->setText(QString::number(weight));
 }
 
-void UserSettingsPage::themeChanged(QString name){
+void AndroidUserSettingsPage::themeChanged(QString name){
     core::WindowHandler::getWindowHandler().changeTheme(name);
 }
+
+#endif // defined(Q_OS_ANDROID)

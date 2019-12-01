@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['_7efilehandler_133',['~FileHandler',['../classhaevn_1_1esp_1_1util_1_1_file_handler.html#a1ce10cd0ad31b313a8d526fba6f1e676',1,'haevn::esp::util::FileHandler']]],
-  ['_7ewindowhandler_134',['~WindowHandler',['../classhaevn_1_1esp_1_1pages_1_1_window_handler.html#a6d2ac7955f29e7d64e3279f642611dff',1,'haevn::esp::pages::WindowHandler']]]
+  ['usernamechanged_174',['userNameChanged',['../classhaevn_1_1esp_1_1core_1_1_user_settings.html#a3d4138f84b0b26e6cff96f14989d58a7',1,'haevn::esp::core::UserSettings']]],
+  ['usersettings_175',['UserSettings',['../classhaevn_1_1esp_1_1core_1_1_user_settings.html#addb9748b9f0ee298b8e23dee74edfc91',1,'haevn::esp::core::UserSettings']]],
+  ['userweightchanged_176',['userWeightChanged',['../classhaevn_1_1esp_1_1core_1_1_user_settings.html#a2a5dd6001a371c264e094147254fead1',1,'haevn::esp::core::UserSettings']]]
 ];

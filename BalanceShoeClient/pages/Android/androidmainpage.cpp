@@ -1,13 +1,16 @@
-#include "mainpage.h"
-#include "core/windowhandler.h"
+#include "androidmainpage.h"
 
+#if defined(Q_OS_ANDROID)
+
+#include "core/windowhandler.h"
 #include "util/filehandler.h"
 #include <QHBoxLayout>
 #include <QMessageBox>
+#include "util/bluetoothutil.h"
 
 using namespace haevn::esp::pages;
 
-MainPage::MainPage(QWidget *parent) : QWidget(parent){
+AndroidMainPage::AndroidMainPage(QWidget *parent) : QWidget(parent){
     vib = &util::Vibrator::getVibrator();
     auto layout = new QVBoxLayout;
     auto buttonLayout = new QHBoxLayout;
@@ -31,17 +34,12 @@ MainPage::MainPage(QWidget *parent) : QWidget(parent){
 
     layout->addWidget(labelName);
 
-#if defined(Q_OS_ANDROID)
     layout->addItem(new QSpacerItem(10, 1000));
-#endif
-
     layout->addWidget(buttonOn);
     layout->addWidget(buttonOff);
 
-#if defined(Q_OS_ANDROID)
     layout->addItem(new QSpacerItem(10, 500));
     layout->addItem(new QSpacerItem(10, 500));
-#endif
 
     buttonLayout->addWidget(buttonUserSettings);
     buttonLayout->addWidget(buttonStat);
@@ -50,28 +48,22 @@ MainPage::MainPage(QWidget *parent) : QWidget(parent){
     layout->setAlignment(Qt::AlignTop);
     setLayout(layout);
 
-    connect(buttonOn, &QPushButton::pressed, this, &MainPage::buttonOnPressed);
-    connect(buttonOff, &QPushButton::pressed, this, &MainPage::buttonOffPressed);
-    connect(buttonStat, &QPushButton::pressed, this, &MainPage::buttonDevPressed);
-    connect(buttonUserSettings, &QPushButton::pressed, this, &MainPage::buttonShowUserSettings);
+    connect(buttonOn, &QPushButton::pressed, this, &AndroidMainPage::buttonOnPressed);
+    connect(buttonOff, &QPushButton::pressed, this, &AndroidMainPage::buttonOffPressed);
+    connect(buttonStat, &QPushButton::pressed, this, &AndroidMainPage::buttonDevPressed);
+    connect(buttonUserSettings, &QPushButton::pressed, this, &AndroidMainPage::buttonShowUserSettings);
 
 
 
-
-
-
-
-    auto btSave = new QPushButton("Save");
+    auto btSave = new QPushButton("TEST COMMAND BUILD");
     auto btLoad = new QPushButton("Load");
 
 
-    connect(btSave, &QPushButton::clicked, [this]()
-    {
-        util::FileHandler::getFileHandler().save("TEST", "dummy.txt");
+    connect(btSave, &QPushButton::clicked, [this](){
+        QMessageBox::information(this, "Bluetooth create command", bluetooth::util::test());
     });
 
-    connect(btLoad, &QPushButton::clicked, [this]()
-    {
+    connect(btLoad, &QPushButton::clicked, [this](){
         QString tmp = util::FileHandler::getFileHandler().read("user.set");
         QMessageBox::information(this, "Info", tmp);
     });
@@ -83,22 +75,25 @@ MainPage::MainPage(QWidget *parent) : QWidget(parent){
 }
 
 
-void MainPage::buttonOnPressed(){
+void AndroidMainPage::buttonOnPressed(){
     buttonOff->setEnabled(true);
     buttonOn->setEnabled(false);
     vib->vibrate(5000);
 }
 
-void MainPage::buttonOffPressed(){
+void AndroidMainPage::buttonOffPressed(){
     buttonOff->setEnabled(false);
     buttonOn->setEnabled(true);
     vib->vibrateStop();
 }
 
-void MainPage::buttonShowUserSettings(){
+void AndroidMainPage::buttonShowUserSettings(){
     core::WindowHandler::getWindowHandler().show(core::windows::userSettingsWindow);
 }
 
-void MainPage::buttonDevPressed(){
-    core::WindowHandler::getWindowHandler().show(core::windows::settingsWindow);
+void AndroidMainPage::buttonDevPressed(){
+    core::WindowHandler::getWindowHandler().show(core::windows::devSettingsWindow);
 }
+
+
+#endif // defined(Q_OS_ANDROID)

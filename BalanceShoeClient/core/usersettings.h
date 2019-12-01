@@ -60,7 +60,9 @@ namespace haevn::esp::core{
 
         QString indexToThemeName(int index);
         int themeNameToIndex(QString name);
+        int themeNameToIndex();
         QStringList getThemes();
+
     signals:
         void userNameChanged(QString name);
         void userWeightChanged(uint weight);

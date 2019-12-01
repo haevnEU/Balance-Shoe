@@ -4,6 +4,7 @@
  * @details This file contains the primary logic which is used to display different
  *          pages.
  * @author Nils Milewski (nimile/10010480)
+ * @todo add clsoing for desktop
  */
 
 #ifndef WINDOWHANDLER_H
@@ -13,12 +14,12 @@
 #include <QObject>      // Used as baseclass
 
 /* User includes */
-#include "../pages/intropage.h"
-#include "../pages/mainpage.h"
-#include "../pages/settingspage.h"
-#include "../pages/usersettingsPage.h"
+#include "pages/intropage.h"
+#include "pages/mainpage.h"
+#include "pages/settingspage.h"
+#include "pages/usersettingsPage.h"
 
-#include "../util/utils.h"  // Used to access application utilities
+#include "util/utils.h"  // Used to access application utilities
 
 namespace haevn::esp::core{
 
@@ -29,10 +30,9 @@ namespace haevn::esp::core{
     enum windows{
         introWindow = 0,
         mainWindow = 1,
-        settingsWindow = 2,
-        statisticsWindow = 3,
-        userSettingsWindow = 4,
-        devSettingsWindow = 5
+        statisticsWindow = 2,
+        userSettingsWindow = 3,
+        devSettingsWindow = 4
     };
 
     /**

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['main_125',['main',['../main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main.cpp']]],
-  ['mainpage_126',['MainPage',['../classhaevn_1_1esp_1_1pages_1_1_main_page.html#a03a81454bcfe83bef44784531c39a206',1,'haevn::esp::pages::MainPage']]]
+  ['load_161',['load',['../classhaevn_1_1esp_1_1core_1_1_user_settings.html#a893482525be333465128a6896593e651',1,'haevn::esp::core::UserSettings']]]
 ];

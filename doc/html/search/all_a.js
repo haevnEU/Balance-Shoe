@@ -1,9 +1,20 @@
 var searchData=
 [
-  ['usersettings_65',['UserSettings',['../classhaevn_1_1esp_1_1pages_1_1_user_settings.html',1,'haevn::esp::pages::UserSettings'],['../classhaevn_1_1esp_1_1pages_1_1_user_settings.html#ac0ce837ec5959f80791b4d092fecf8a1',1,'haevn::esp::pages::UserSettings::UserSettings()']]],
-  ['usersettings_2ecpp_66',['usersettings.cpp',['../usersettings_8cpp.html',1,'']]],
-  ['usersettings_2eh_67',['usersettings.h',['../usersettings_8h.html',1,'']]],
-  ['usersettingspage_68',['userSettingsPage',['../classhaevn_1_1esp_1_1pages_1_1_window_handler.html#a215dd948a7392b4a42c450d018288182',1,'haevn::esp::pages::WindowHandler']]],
-  ['usersettingswindow_69',['userSettingsWindow',['../namespacehaevn_1_1esp_1_1pages.html#a4b04acbf1cb44485bfcf6e76cfa20001ae43ef8370e80b7f176e3f2f8cdbb4d74',1,'haevn::esp::pages']]],
-  ['utils_2eh_70',['utils.h',['../utils_8h.html',1,'']]]
+  ['macintropage_2ecpp_44',['macintropage.cpp',['../macintropage_8cpp.html',1,'']]],
+  ['macintropage_2eh_45',['macintropage.h',['../macintropage_8h.html',1,'']]],
+  ['macmainpage_2ecpp_46',['macmainpage.cpp',['../macmainpage_8cpp.html',1,'']]],
+  ['macmainpage_2eh_47',['macmainpage.h',['../macmainpage_8h.html',1,'']]],
+  ['macsettingspage_2ecpp_48',['macsettingspage.cpp',['../macsettingspage_8cpp.html',1,'']]],
+  ['macsettingspage_2eh_49',['macsettingspage.h',['../macsettingspage_8h.html',1,'']]],
+  ['macusersettingspage_2ecpp_50',['macusersettingspage.cpp',['../macusersettingspage_8cpp.html',1,'']]],
+  ['macusersettingspage_2eh_51',['macusersettingspage.h',['../macusersettingspage_8h.html',1,'']]],
+  ['main_52',['main',['../main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main.cpp']]],
+  ['main_2ecpp_53',['main.cpp',['../main_8cpp.html',1,'']]],
+  ['mainpage_54',['mainPage',['../classhaevn_1_1esp_1_1core_1_1_window_handler.html#aabcd841c5355821880e647a64cb0afe0',1,'haevn::esp::core::WindowHandler']]],
+  ['mainpage_2eh_55',['mainpage.h',['../mainpage_8h.html',1,'']]],
+  ['mainwindow_56',['mainWindow',['../namespacehaevn_1_1esp_1_1core.html#a0dc12c0843b33740c81a640878e9e5e1ac1463062c6031a1b0491323df8f08353',1,'haevn::esp::core']]],
+  ['max_5fweight_57',['MAX_WEIGHT',['../bluetoothutil_8h.html#a943995a7bf30da3587664920856533ab',1,'MAX_WEIGHT():&#160;bluetoothutil.h'],['../namespacehaevn_1_1esp_1_1bluetooth_1_1util.html#ab32ff6b45b627dd98a86455af184f88aa4daceb3f191997232a86df64e0020cb6',1,'haevn::esp::bluetooth::util::max_weight()']]],
+  ['maxweight_58',['maxWeight',['../classhaevn_1_1esp_1_1core_1_1_user_settings.html#a9da38016df3889db4c3b1f51e11a39b4',1,'haevn::esp::core::UserSettings']]],
+  ['maxweightchanged_59',['maxWeightChanged',['../classhaevn_1_1esp_1_1core_1_1_user_settings.html#aacc83d3a7ff1707fbe4293b01baacd30',1,'haevn::esp::core::UserSettings']]],
+  ['methods_60',['methods',['../utils_8h.html#a72e04abe451aa1377b4fde586ff8743f',1,'utils.h']]]
 ];

@@ -5,7 +5,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=9"/>
 		<meta name="generator" content="Doxygen 1.8.16"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
-		<title>Balance Shoe: /Users/nils/dev/projects/Balance-Shoe/BalanceShoeClient/core/pages/settingspage.h Source File</title>
+		<title>Balance Shoe: /Users/nils/dev/projects/Balance-Shoe/BalanceShoeClient/pages/settingspage.h Source File</title>
 		<link href="tabs.css" rel="stylesheet" type="text/css"/>
 		<script type="text/javascript" src="jquery.js"></script>
 		<script type="text/javascript" src="dynsections.js"></script>
@@ -62,7 +62,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_a4961fb9ee9fe84b76c508a315a68baa.html">BalanceShoeClient</a></li><li class="navelem"><a class="el" href="dir_b23c50c40b45b11d56926ee6bfcc4eae.html">core</a></li><li class="navelem"><a class="el" href="dir_02eb4f470d6eabccc86e059919422b27.html">pages</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_a4961fb9ee9fe84b76c508a315a68baa.html">BalanceShoeClient</a></li><li class="navelem"><a class="el" href="dir_3d87217f83deffc98081e5bf2182ce69.html">pages</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -71,112 +71,29 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <a href="settingspage_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#ifndef SETTINGSPAGE_H</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define SETTINGSPAGE_H</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">/* QT widgets */</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;QWidget&gt;</span>      <span class="comment">// Used as base class</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;QLabel&gt;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;QLineEdit&gt;</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;QCheckBox&gt;</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;QGroupBox&gt;</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;QComboBox&gt;</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;QPushButton&gt;</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;QSpacerItem&gt;</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">/* Qt layout */</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &lt;QGridLayout&gt;</span>  <span class="comment">// Used as primary layout</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment">/* User includes */</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &quot;../util/utils.h&quot;</span>              <span class="comment">// Used to access project utilities</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#if defined(Q_OS_ANDROID)               // Next includes are only used when android is build</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &quot;../widgets/customlineedit.h&quot;</span>  <span class="comment">// Used to enable touch interaction for QLineEdit</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacehaevn_1_1esp_1_1pages.html">haevn::esp::pages</a>{</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html">   39</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html">SettingsPage</a> : <span class="keyword">public</span> QWidget{</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        Q_OBJECT</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keyword">private</span> <a class="code" href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#a31e276df12373cbbe8b3dc3d86940193">attributes</a>:</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">    #if defined(Q_OS_ANDROID)</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        widgets::CustomLineEdit* <a class="code" href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#a36f98aa319510eaacf6d99e61d5d92b6">inputBAUD</a>;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        widgets::CustomLineEdit* <a class="code" href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#a2ae004badb0f3e52278377878bc5aa60">inputDOutPin</a>;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        widgets::CustomLineEdit* <a class="code" href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#af6d4e4f133bd495a5447844edec5cc84">inputSCKPint</a>;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        widgets::CustomLineEdit* <a class="code" href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#a3bd5718b23ab7ca1c3802a08894d228a">inputReferenceWeight</a>;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        widgets::CustomLineEdit* <a class="code" href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#ad14db49f797794d83414936273ebc09d">inputTolerance</a>;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        widgets::CustomLineEdit* <a class="code" href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#a038a62095404a950c99a9e3b819c834b">inputScaleValue</a>;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        QPushButton* <a class="code" href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#a15d0937821b68adcdca51df0e7fdc5eb">buttonSaveSetup</a>;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="preprocessor">    #else</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#a31e276df12373cbbe8b3dc3d86940193">   62</a></span>&#160;        QLineEdit* inputName;</div>
-<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#af9bcd259cabc7ab0510fe1895ee0c153">   63</a></span>&#160;        QLineEdit* <a class="code" href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#af9bcd259cabc7ab0510fe1895ee0c153">inputWeight</a>;</div>
-<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#ae1c7330e4053321ed2182e54f965ed43">   64</a></span>&#160;        QLineEdit* <a class="code" href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#ae1c7330e4053321ed2182e54f965ed43">inputMaxWeight</a>;</div>
-<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#acf4db42cf972a1a3716ac44d4b4b275a">   65</a></span>&#160;        QPushButton* <a class="code" href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#acf4db42cf972a1a3716ac44d4b4b275a">buttonSaveSettings</a>;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
-<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#a6d858f43856325fd60d79ea7044ba406">   67</a></span>&#160;        QCheckBox* <a class="code" href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#a6d858f43856325fd60d79ea7044ba406">checkBoxDebug</a>;</div>
-<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#a36f98aa319510eaacf6d99e61d5d92b6">   68</a></span>&#160;        QLineEdit* <a class="code" href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#a36f98aa319510eaacf6d99e61d5d92b6">inputBAUD</a>;</div>
-<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#a2ae004badb0f3e52278377878bc5aa60">   69</a></span>&#160;        QLineEdit* <a class="code" href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#a2ae004badb0f3e52278377878bc5aa60">inputDOutPin</a>;</div>
-<div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#af6d4e4f133bd495a5447844edec5cc84">   70</a></span>&#160;        QLineEdit* <a class="code" href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#af6d4e4f133bd495a5447844edec5cc84">inputSCKPint</a>;</div>
-<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#a3bd5718b23ab7ca1c3802a08894d228a">   71</a></span>&#160;        QLineEdit* <a class="code" href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#a3bd5718b23ab7ca1c3802a08894d228a">inputReferenceWeight</a>;</div>
-<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#ad14db49f797794d83414936273ebc09d">   72</a></span>&#160;        QLineEdit* <a class="code" href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#ad14db49f797794d83414936273ebc09d">inputTolerance</a>;</div>
-<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#a038a62095404a950c99a9e3b819c834b">   73</a></span>&#160;        QLineEdit* <a class="code" href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#a038a62095404a950c99a9e3b819c834b">inputScaleValue</a>;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
-<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#a74d947428b5ef927ad37061f3475edf9">   75</a></span>&#160;        QComboBox* <a class="code" href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#a74d947428b5ef927ad37061f3475edf9">comboBoxTheme</a>;</div>
-<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#a15d0937821b68adcdca51df0e7fdc5eb">   76</a></span>&#160;        QPushButton* <a class="code" href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#a15d0937821b68adcdca51df0e7fdc5eb">buttonSaveSetup</a>;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="preprocessor">    #endif</span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
-<div class="line"><a name="l00080"></a><span class="lineno"><a class="line" href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#ac5f4b23adf0c4700e7f90c3519f18dd3">   80</a></span>&#160;        QFont <a class="code" href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#ac5f4b23adf0c4700e7f90c3519f18dd3">font</a>;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keyword">public</span> <a class="code" href="utils_8h.html#a72e04abe451aa1377b4fde586ff8743f">methods</a>:</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <a class="code" href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#abe34fc9c05cff8945da7a9fbc2d2d5dc">SettingsPage</a>(QWidget* parent = <span class="keyword">nullptr</span>);</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        QLayout *<a class="code" href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#a898ff73d32202a9c86746975dff2f57f">createLayout</a>();</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keyword">private</span> slots:</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#a5ccd402eb15184464c08e827f8a09e8a">buttonBackPressed</a>();</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#a8b71cfae9d7189492185ea1d2f735bd1">buttonLottoPressed</a>();</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#a183f700016ef0be70d3d723955f2baf1">buttonSavePressed</a>();</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    };</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;}</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="preprocessor">#endif // SETTINGSPAGE_H</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#ifndef SETTINGSPAGE_H</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#define SETTINGSPAGE_H</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;QObject&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#if defined(Q_OS_ANDROID)</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="androidsettingspage_8h.html">Android/androidsettingspage.h</a>&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#define SettingsPage AndroidSettingsPage</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#elif defined(Q_OS_IOS)</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &quot;ios/iossettingspage.h&quot;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#define SettingsPage IosSettingsPage</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#elif defined(Q_OS_MACOS)</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="macsettingspage_8h.html">Mac/macsettingspage.h</a>&quot;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#define SettingsPage MacSettingsPage</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#elif defined(Q_OS_WINDOWS)</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &quot;windows/winsettingspage.h&quot;</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#define SettingsPage WinSettingsPage</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#endif // SETTINGSPAGE_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aclasshaevn_1_1esp_1_1pages_1_1_settings_page_html_a31e276df12373cbbe8b3dc3d86940193"><div class="ttname"><a href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#a31e276df12373cbbe8b3dc3d86940193">haevn::esp::pages::SettingsPage::attributes</a></div><div class="ttdeci">private attributes</div><div class="ttdef"><b>Definition:</b> <a href="settingspage_8h_source.html#l00062">settingspage.h:62</a></div></div>
-<div class="ttc" id="aclasshaevn_1_1esp_1_1pages_1_1_settings_page_html_a898ff73d32202a9c86746975dff2f57f"><div class="ttname"><a href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#a898ff73d32202a9c86746975dff2f57f">haevn::esp::pages::SettingsPage::createLayout</a></div><div class="ttdeci">QLayout * createLayout()</div><div class="ttdef"><b>Definition:</b> <a href="settingspage_8cpp_source.html#l00097">settingspage.cpp:97</a></div></div>
-<div class="ttc" id="aclasshaevn_1_1esp_1_1pages_1_1_settings_page_html_a74d947428b5ef927ad37061f3475edf9"><div class="ttname"><a href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#a74d947428b5ef927ad37061f3475edf9">haevn::esp::pages::SettingsPage::comboBoxTheme</a></div><div class="ttdeci">QComboBox * comboBoxTheme</div><div class="ttdef"><b>Definition:</b> <a href="settingspage_8h_source.html#l00075">settingspage.h:75</a></div></div>
-<div class="ttc" id="aclasshaevn_1_1esp_1_1pages_1_1_settings_page_html_a038a62095404a950c99a9e3b819c834b"><div class="ttname"><a href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#a038a62095404a950c99a9e3b819c834b">haevn::esp::pages::SettingsPage::inputScaleValue</a></div><div class="ttdeci">QLineEdit * inputScaleValue</div><div class="ttdef"><b>Definition:</b> <a href="settingspage_8h_source.html#l00073">settingspage.h:73</a></div></div>
-<div class="ttc" id="aclasshaevn_1_1esp_1_1pages_1_1_settings_page_html_a5ccd402eb15184464c08e827f8a09e8a"><div class="ttname"><a href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#a5ccd402eb15184464c08e827f8a09e8a">haevn::esp::pages::SettingsPage::buttonBackPressed</a></div><div class="ttdeci">void buttonBackPressed()</div><div class="ttdef"><b>Definition:</b> <a href="settingspage_8cpp_source.html#l00120">settingspage.cpp:120</a></div></div>
-<div class="ttc" id="aclasshaevn_1_1esp_1_1pages_1_1_settings_page_html_a183f700016ef0be70d3d723955f2baf1"><div class="ttname"><a href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#a183f700016ef0be70d3d723955f2baf1">haevn::esp::pages::SettingsPage::buttonSavePressed</a></div><div class="ttdeci">void buttonSavePressed()</div><div class="ttdef"><b>Definition:</b> <a href="settingspage_8cpp_source.html#l00108">settingspage.cpp:108</a></div></div>
-<div class="ttc" id="aclasshaevn_1_1esp_1_1pages_1_1_settings_page_html_acf4db42cf972a1a3716ac44d4b4b275a"><div class="ttname"><a href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#acf4db42cf972a1a3716ac44d4b4b275a">haevn::esp::pages::SettingsPage::buttonSaveSettings</a></div><div class="ttdeci">QPushButton * buttonSaveSettings</div><div class="ttdef"><b>Definition:</b> <a href="settingspage_8h_source.html#l00065">settingspage.h:65</a></div></div>
-<div class="ttc" id="anamespacehaevn_1_1esp_1_1pages_html"><div class="ttname"><a href="namespacehaevn_1_1esp_1_1pages.html">haevn::esp::pages</a></div><div class="ttdef"><b>Definition:</b> <a href="intropage_8h_source.html#l00024">intropage.h:24</a></div></div>
-<div class="ttc" id="aclasshaevn_1_1esp_1_1pages_1_1_settings_page_html_a36f98aa319510eaacf6d99e61d5d92b6"><div class="ttname"><a href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#a36f98aa319510eaacf6d99e61d5d92b6">haevn::esp::pages::SettingsPage::inputBAUD</a></div><div class="ttdeci">QLineEdit * inputBAUD</div><div class="ttdef"><b>Definition:</b> <a href="settingspage_8h_source.html#l00068">settingspage.h:68</a></div></div>
-<div class="ttc" id="aclasshaevn_1_1esp_1_1pages_1_1_settings_page_html"><div class="ttname"><a href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html">haevn::esp::pages::SettingsPage</a></div><div class="ttdoc">The SettingsPage class.</div><div class="ttdef"><b>Definition:</b> <a href="settingspage_8h_source.html#l00039">settingspage.h:39</a></div></div>
-<div class="ttc" id="aclasshaevn_1_1esp_1_1pages_1_1_settings_page_html_a15d0937821b68adcdca51df0e7fdc5eb"><div class="ttname"><a href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#a15d0937821b68adcdca51df0e7fdc5eb">haevn::esp::pages::SettingsPage::buttonSaveSetup</a></div><div class="ttdeci">QPushButton * buttonSaveSetup</div><div class="ttdef"><b>Definition:</b> <a href="settingspage_8h_source.html#l00076">settingspage.h:76</a></div></div>
-<div class="ttc" id="aclasshaevn_1_1esp_1_1pages_1_1_settings_page_html_a6d858f43856325fd60d79ea7044ba406"><div class="ttname"><a href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#a6d858f43856325fd60d79ea7044ba406">haevn::esp::pages::SettingsPage::checkBoxDebug</a></div><div class="ttdeci">QCheckBox * checkBoxDebug</div><div class="ttdef"><b>Definition:</b> <a href="settingspage_8h_source.html#l00067">settingspage.h:67</a></div></div>
-<div class="ttc" id="autils_8h_html_a72e04abe451aa1377b4fde586ff8743f"><div class="ttname"><a href="utils_8h.html#a72e04abe451aa1377b4fde586ff8743f">methods</a></div><div class="ttdeci">#define methods</div><div class="ttdef"><b>Definition:</b> <a href="utils_8h_source.html#l00011">utils.h:11</a></div></div>
-<div class="ttc" id="aclasshaevn_1_1esp_1_1pages_1_1_settings_page_html_ad14db49f797794d83414936273ebc09d"><div class="ttname"><a href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#ad14db49f797794d83414936273ebc09d">haevn::esp::pages::SettingsPage::inputTolerance</a></div><div class="ttdeci">QLineEdit * inputTolerance</div><div class="ttdef"><b>Definition:</b> <a href="settingspage_8h_source.html#l00072">settingspage.h:72</a></div></div>
-<div class="ttc" id="aclasshaevn_1_1esp_1_1pages_1_1_settings_page_html_ae1c7330e4053321ed2182e54f965ed43"><div class="ttname"><a href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#ae1c7330e4053321ed2182e54f965ed43">haevn::esp::pages::SettingsPage::inputMaxWeight</a></div><div class="ttdeci">QLineEdit * inputMaxWeight</div><div class="ttdef"><b>Definition:</b> <a href="settingspage_8h_source.html#l00064">settingspage.h:64</a></div></div>
-<div class="ttc" id="aclasshaevn_1_1esp_1_1pages_1_1_settings_page_html_abe34fc9c05cff8945da7a9fbc2d2d5dc"><div class="ttname"><a href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#abe34fc9c05cff8945da7a9fbc2d2d5dc">haevn::esp::pages::SettingsPage::SettingsPage</a></div><div class="ttdeci">SettingsPage(QWidget *parent=nullptr)</div><div class="ttdef"><b>Definition:</b> <a href="settingspage_8cpp_source.html#l00011">settingspage.cpp:11</a></div></div>
-<div class="ttc" id="aclasshaevn_1_1esp_1_1pages_1_1_settings_page_html_a8b71cfae9d7189492185ea1d2f735bd1"><div class="ttname"><a href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#a8b71cfae9d7189492185ea1d2f735bd1">haevn::esp::pages::SettingsPage::buttonLottoPressed</a></div><div class="ttdeci">void buttonLottoPressed()</div><div class="ttdef"><b>Definition:</b> <a href="settingspage_8cpp_source.html#l00125">settingspage.cpp:125</a></div></div>
-<div class="ttc" id="aclasshaevn_1_1esp_1_1pages_1_1_settings_page_html_a2ae004badb0f3e52278377878bc5aa60"><div class="ttname"><a href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#a2ae004badb0f3e52278377878bc5aa60">haevn::esp::pages::SettingsPage::inputDOutPin</a></div><div class="ttdeci">QLineEdit * inputDOutPin</div><div class="ttdef"><b>Definition:</b> <a href="settingspage_8h_source.html#l00069">settingspage.h:69</a></div></div>
-<div class="ttc" id="aclasshaevn_1_1esp_1_1pages_1_1_settings_page_html_ac5f4b23adf0c4700e7f90c3519f18dd3"><div class="ttname"><a href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#ac5f4b23adf0c4700e7f90c3519f18dd3">haevn::esp::pages::SettingsPage::font</a></div><div class="ttdeci">QFont font</div><div class="ttdef"><b>Definition:</b> <a href="settingspage_8h_source.html#l00080">settingspage.h:80</a></div></div>
-<div class="ttc" id="aclasshaevn_1_1esp_1_1pages_1_1_settings_page_html_a3bd5718b23ab7ca1c3802a08894d228a"><div class="ttname"><a href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#a3bd5718b23ab7ca1c3802a08894d228a">haevn::esp::pages::SettingsPage::inputReferenceWeight</a></div><div class="ttdeci">QLineEdit * inputReferenceWeight</div><div class="ttdef"><b>Definition:</b> <a href="settingspage_8h_source.html#l00071">settingspage.h:71</a></div></div>
-<div class="ttc" id="aclasshaevn_1_1esp_1_1pages_1_1_settings_page_html_af6d4e4f133bd495a5447844edec5cc84"><div class="ttname"><a href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#af6d4e4f133bd495a5447844edec5cc84">haevn::esp::pages::SettingsPage::inputSCKPint</a></div><div class="ttdeci">QLineEdit * inputSCKPint</div><div class="ttdef"><b>Definition:</b> <a href="settingspage_8h_source.html#l00070">settingspage.h:70</a></div></div>
-<div class="ttc" id="aclasshaevn_1_1esp_1_1pages_1_1_settings_page_html_af9bcd259cabc7ab0510fe1895ee0c153"><div class="ttname"><a href="classhaevn_1_1esp_1_1pages_1_1_settings_page.html#af9bcd259cabc7ab0510fe1895ee0c153">haevn::esp::pages::SettingsPage::inputWeight</a></div><div class="ttdeci">QLineEdit * inputWeight</div><div class="ttdef"><b>Definition:</b> <a href="settingspage_8h_source.html#l00063">settingspage.h:63</a></div></div>
+<div class="ttc" id="amacsettingspage_8h_html"><div class="ttname"><a href="macsettingspage_8h.html">macsettingspage.h</a></div><div class="ttdoc">Provides the logic to handle the developer settings.</div></div>
+<div class="ttc" id="aandroidsettingspage_8h_html"><div class="ttname"><a href="androidsettingspage_8h.html">androidsettingspage.h</a></div><div class="ttdoc">Provides the logic to handle the developer settings.</div></div>
 <!-- start footer part -->
 		<script src="custom.js"></script>
 	</body>

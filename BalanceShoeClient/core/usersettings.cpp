@@ -87,3 +87,7 @@ QString UserSettings::indexToThemeName(int index){
 int UserSettings::themeNameToIndex(QString name){
     return themes.indexOf(name);
 }
+
+int UserSettings::themeNameToIndex(){
+    return themes.indexOf(themeName);
+}

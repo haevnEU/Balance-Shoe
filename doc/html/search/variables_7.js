@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['static_5fmethods_159',['static_methods',['../classhaevn_1_1esp_1_1pages_1_1_window_handler.html#a2f5431408b02f4e93216ffc14db87735',1,'haevn::esp::pages::WindowHandler::static_methods()'],['../classhaevn_1_1esp_1_1util_1_1_file_handler.html#a1362026628fa488574177ef61a819fa5',1,'haevn::esp::util::FileHandler::static_methods()'],['../classhaevn_1_1esp_1_1util_1_1_vibrator.html#a52b832ac162cd59e63f9d094e248d185',1,'haevn::esp::util::Vibrator::static_methods()']]]
+  ['username_192',['userName',['../classhaevn_1_1esp_1_1core_1_1_user_settings.html#aac1ca1115b57a6c0a50f7032b6efd75b',1,'haevn::esp::core::UserSettings']]],
+  ['usersettingspage_193',['userSettingsPage',['../classhaevn_1_1esp_1_1core_1_1_window_handler.html#ac69ee0be93421d74670ab63e7df1a181',1,'haevn::esp::core::WindowHandler']]],
+  ['userweight_194',['userWeight',['../classhaevn_1_1esp_1_1core_1_1_user_settings.html#a9480c49284a73969dfa57d90a7a9de92',1,'haevn::esp::core::UserSettings']]]
 ];

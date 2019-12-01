@@ -5,7 +5,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=9"/>
 		<meta name="generator" content="Doxygen 1.8.16"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
-		<title>Balance Shoe: /Users/nils/dev/projects/Balance-Shoe/BalanceShoeClient/core/pages/mainpage.h Source File</title>
+		<title>Balance Shoe: /Users/nils/dev/projects/Balance-Shoe/BalanceShoeClient/pages/mainpage.h Source File</title>
 		<link href="tabs.css" rel="stylesheet" type="text/css"/>
 		<script type="text/javascript" src="jquery.js"></script>
 		<script type="text/javascript" src="dynsections.js"></script>
@@ -62,7 +62,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_a4961fb9ee9fe84b76c508a315a68baa.html">BalanceShoeClient</a></li><li class="navelem"><a class="el" href="dir_b23c50c40b45b11d56926ee6bfcc4eae.html">core</a></li><li class="navelem"><a class="el" href="dir_02eb4f470d6eabccc86e059919422b27.html">pages</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_a4961fb9ee9fe84b76c508a315a68baa.html">BalanceShoeClient</a></li><li class="navelem"><a class="el" href="dir_3d87217f83deffc98081e5bf2182ce69.html">pages</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -71,71 +71,30 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <a href="mainpage_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#ifndef MAINPAGE_H</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#define MAINPAGE_H</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">/* Qt widgets */</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;QWidget&gt;</span>          <span class="comment">// Used as base class</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;QLabel&gt;</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;QSpacerItem&gt;</span>      <span class="comment">// Used to insert space between UI elements</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;QPushButton&gt;</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">/* Qt layout */</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &lt;QVBoxLayout&gt;</span>      <span class="comment">// Used as primary layout</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment">/* User inccldues */</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &quot;../util/vibrator.h&quot;</span>       <span class="comment">// Used to vibrate the device</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &quot;../util/utils.h&quot;</span>          <span class="comment">// Used to access project utilities</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#ifndef MAINPAGE_H</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#define MAINPAGE_H</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;QObject&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#if defined(Q_OS_ANDROID)</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="androidmainpage_8h.html">Android/androidmainpage.h</a>&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#define MainPage AndroidMainPage</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#elif defined(Q_OS_IOS)</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &quot;ios/iosmainpage.h&quot;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#define MainPage IosMainPage</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#elif defined(Q_OS_MACOS)</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="macmainpage_8h.html">Mac/macmainpage.h</a>&quot;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#define MainPage MacMainPage</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#elif defined(Q_OS_WINDOWS)</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &quot;windows/winmainpage.h&quot;</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#define MainPage WinMainPage</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacehaevn_1_1esp_1_1pages.html">haevn::esp::pages</a>{</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
-<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="classhaevn_1_1esp_1_1pages_1_1_main_page.html">   35</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classhaevn_1_1esp_1_1pages_1_1_main_page.html">MainPage</a> : <span class="keyword">public</span> QWidget{</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        Q_OBJECT</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keyword">private</span> <a class="code" href="classhaevn_1_1esp_1_1pages_1_1_main_page.html#a819fe1b51e4a4a4512e2798ac6b2f511">attributes</a>:</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
-<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classhaevn_1_1esp_1_1pages_1_1_main_page.html#a819fe1b51e4a4a4512e2798ac6b2f511">   41</a></span>&#160;        <a class="code" href="classhaevn_1_1esp_1_1util_1_1_vibrator.html">util::Vibrator</a>* vib;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
-<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="classhaevn_1_1esp_1_1pages_1_1_main_page.html#ac0807196a56d8155b161ce932d0c568e">   43</a></span>&#160;        QPushButton* <a class="code" href="classhaevn_1_1esp_1_1pages_1_1_main_page.html#ac0807196a56d8155b161ce932d0c568e">buttonOff</a>;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
-<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="classhaevn_1_1esp_1_1pages_1_1_main_page.html#a95bfa9735c3087c75621a04eeb422f09">   45</a></span>&#160;        QPushButton* <a class="code" href="classhaevn_1_1esp_1_1pages_1_1_main_page.html#a95bfa9735c3087c75621a04eeb422f09">buttonOn</a>;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
-<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="classhaevn_1_1esp_1_1pages_1_1_main_page.html#a7cc101b69aee9ea388ca75cb115dc706">   47</a></span>&#160;        QPushButton* <a class="code" href="classhaevn_1_1esp_1_1pages_1_1_main_page.html#a7cc101b69aee9ea388ca75cb115dc706">buttonUserSettings</a>;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="classhaevn_1_1esp_1_1pages_1_1_main_page.html#a95ad2ba1ff2b34ad3e2b9883d9c92200">   49</a></span>&#160;        QPushButton* <a class="code" href="classhaevn_1_1esp_1_1pages_1_1_main_page.html#a95ad2ba1ff2b34ad3e2b9883d9c92200">buttonStat</a>;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keyword">public</span> <a class="code" href="utils_8h.html#a72e04abe451aa1377b4fde586ff8743f">methods</a>:</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <a class="code" href="classhaevn_1_1esp_1_1pages_1_1_main_page.html#a03a81454bcfe83bef44784531c39a206">MainPage</a>(QWidget* parent = <span class="keyword">nullptr</span>);</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keyword">private</span> slots:</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classhaevn_1_1esp_1_1pages_1_1_main_page.html#adcb509b414dcb1470d1debad602be3bd">buttonOnPressed</a>();</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classhaevn_1_1esp_1_1pages_1_1_main_page.html#a26feb5cc18c4ba667a8620e1b9927858">buttonOffPressed</a>();</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classhaevn_1_1esp_1_1pages_1_1_main_page.html#ada655467aec7e3f8ed9494c122b8f652">buttonShowUserSettings</a>();</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classhaevn_1_1esp_1_1pages_1_1_main_page.html#ab8abd0e6ffac674992d0633a4cdee736">buttonDevPressed</a>();</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    };</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;}</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="preprocessor">#endif // MAINPAGE_H</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#endif // MAINPAGE_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aclasshaevn_1_1esp_1_1pages_1_1_main_page_html_a26feb5cc18c4ba667a8620e1b9927858"><div class="ttname"><a href="classhaevn_1_1esp_1_1pages_1_1_main_page.html#a26feb5cc18c4ba667a8620e1b9927858">haevn::esp::pages::MainPage::buttonOffPressed</a></div><div class="ttdeci">void buttonOffPressed()</div><div class="ttdoc">buttonOffPressed Currently this method deactivates the vibration of the device.</div><div class="ttdef"><b>Definition:</b> <a href="mainpage_8cpp_source.html#l00062">mainpage.cpp:62</a></div></div>
-<div class="ttc" id="aclasshaevn_1_1esp_1_1pages_1_1_main_page_html_ac0807196a56d8155b161ce932d0c568e"><div class="ttname"><a href="classhaevn_1_1esp_1_1pages_1_1_main_page.html#ac0807196a56d8155b161ce932d0c568e">haevn::esp::pages::MainPage::buttonOff</a></div><div class="ttdeci">QPushButton * buttonOff</div><div class="ttdef"><b>Definition:</b> <a href="mainpage_8h_source.html#l00043">mainpage.h:43</a></div></div>
-<div class="ttc" id="aclasshaevn_1_1esp_1_1pages_1_1_main_page_html_ada655467aec7e3f8ed9494c122b8f652"><div class="ttname"><a href="classhaevn_1_1esp_1_1pages_1_1_main_page.html#ada655467aec7e3f8ed9494c122b8f652">haevn::esp::pages::MainPage::buttonShowUserSettings</a></div><div class="ttdeci">void buttonShowUserSettings()</div><div class="ttdoc">buttonShowUserSettings This method invokes the user settings.</div><div class="ttdef"><b>Definition:</b> <a href="mainpage_8cpp_source.html#l00068">mainpage.cpp:68</a></div></div>
-<div class="ttc" id="aclasshaevn_1_1esp_1_1pages_1_1_main_page_html_adcb509b414dcb1470d1debad602be3bd"><div class="ttname"><a href="classhaevn_1_1esp_1_1pages_1_1_main_page.html#adcb509b414dcb1470d1debad602be3bd">haevn::esp::pages::MainPage::buttonOnPressed</a></div><div class="ttdeci">void buttonOnPressed()</div><div class="ttdoc">buttonOnPressed Currently this method activates the vibration of the device.</div><div class="ttdef"><b>Definition:</b> <a href="mainpage_8cpp_source.html#l00056">mainpage.cpp:56</a></div></div>
-<div class="ttc" id="aclasshaevn_1_1esp_1_1pages_1_1_main_page_html_a819fe1b51e4a4a4512e2798ac6b2f511"><div class="ttname"><a href="classhaevn_1_1esp_1_1pages_1_1_main_page.html#a819fe1b51e4a4a4512e2798ac6b2f511">haevn::esp::pages::MainPage::attributes</a></div><div class="ttdeci">private attributes</div><div class="ttdef"><b>Definition:</b> <a href="mainpage_8h_source.html#l00041">mainpage.h:41</a></div></div>
-<div class="ttc" id="aclasshaevn_1_1esp_1_1pages_1_1_main_page_html_ab8abd0e6ffac674992d0633a4cdee736"><div class="ttname"><a href="classhaevn_1_1esp_1_1pages_1_1_main_page.html#ab8abd0e6ffac674992d0633a4cdee736">haevn::esp::pages::MainPage::buttonDevPressed</a></div><div class="ttdeci">void buttonDevPressed()</div><div class="ttdoc">buttonShowDevSettings This method invokes the developer settings.</div><div class="ttdef"><b>Definition:</b> <a href="mainpage_8cpp_source.html#l00072">mainpage.cpp:72</a></div></div>
-<div class="ttc" id="anamespacehaevn_1_1esp_1_1pages_html"><div class="ttname"><a href="namespacehaevn_1_1esp_1_1pages.html">haevn::esp::pages</a></div><div class="ttdef"><b>Definition:</b> <a href="intropage_8h_source.html#l00024">intropage.h:24</a></div></div>
-<div class="ttc" id="aclasshaevn_1_1esp_1_1pages_1_1_main_page_html_a03a81454bcfe83bef44784531c39a206"><div class="ttname"><a href="classhaevn_1_1esp_1_1pages_1_1_main_page.html#a03a81454bcfe83bef44784531c39a206">haevn::esp::pages::MainPage::MainPage</a></div><div class="ttdeci">MainPage(QWidget *parent=nullptr)</div><div class="ttdoc">MainPage This is a constructor.</div><div class="ttdef"><b>Definition:</b> <a href="mainpage_8cpp_source.html#l00006">mainpage.cpp:6</a></div></div>
-<div class="ttc" id="autils_8h_html_a72e04abe451aa1377b4fde586ff8743f"><div class="ttname"><a href="utils_8h.html#a72e04abe451aa1377b4fde586ff8743f">methods</a></div><div class="ttdeci">#define methods</div><div class="ttdef"><b>Definition:</b> <a href="utils_8h_source.html#l00011">utils.h:11</a></div></div>
-<div class="ttc" id="aclasshaevn_1_1esp_1_1pages_1_1_main_page_html_a95bfa9735c3087c75621a04eeb422f09"><div class="ttname"><a href="classhaevn_1_1esp_1_1pages_1_1_main_page.html#a95bfa9735c3087c75621a04eeb422f09">haevn::esp::pages::MainPage::buttonOn</a></div><div class="ttdeci">QPushButton * buttonOn</div><div class="ttdef"><b>Definition:</b> <a href="mainpage_8h_source.html#l00045">mainpage.h:45</a></div></div>
-<div class="ttc" id="aclasshaevn_1_1esp_1_1pages_1_1_main_page_html_a7cc101b69aee9ea388ca75cb115dc706"><div class="ttname"><a href="classhaevn_1_1esp_1_1pages_1_1_main_page.html#a7cc101b69aee9ea388ca75cb115dc706">haevn::esp::pages::MainPage::buttonUserSettings</a></div><div class="ttdeci">QPushButton * buttonUserSettings</div><div class="ttdef"><b>Definition:</b> <a href="mainpage_8h_source.html#l00047">mainpage.h:47</a></div></div>
-<div class="ttc" id="aclasshaevn_1_1esp_1_1pages_1_1_main_page_html"><div class="ttname"><a href="classhaevn_1_1esp_1_1pages_1_1_main_page.html">haevn::esp::pages::MainPage</a></div><div class="ttdoc">The MainPage class This lass contains the logic to handle main page.</div><div class="ttdef"><b>Definition:</b> <a href="mainpage_8h_source.html#l00035">mainpage.h:35</a></div></div>
-<div class="ttc" id="aclasshaevn_1_1esp_1_1util_1_1_vibrator_html"><div class="ttname"><a href="classhaevn_1_1esp_1_1util_1_1_vibrator.html">haevn::esp::util::Vibrator</a></div><div class="ttdef"><b>Definition:</b> <a href="vibrator_8h_source.html#l00031">vibrator.h:31</a></div></div>
-<div class="ttc" id="aclasshaevn_1_1esp_1_1pages_1_1_main_page_html_a95ad2ba1ff2b34ad3e2b9883d9c92200"><div class="ttname"><a href="classhaevn_1_1esp_1_1pages_1_1_main_page.html#a95ad2ba1ff2b34ad3e2b9883d9c92200">haevn::esp::pages::MainPage::buttonStat</a></div><div class="ttdeci">QPushButton * buttonStat</div><div class="ttdef"><b>Definition:</b> <a href="mainpage_8h_source.html#l00049">mainpage.h:49</a></div></div>
+<div class="ttc" id="aandroidmainpage_8h_html"><div class="ttname"><a href="androidmainpage_8h.html">androidmainpage.h</a></div><div class="ttdoc">Provides the logic to handle main page.</div></div>
+<div class="ttc" id="amacmainpage_8h_html"><div class="ttname"><a href="macmainpage_8h.html">macmainpage.h</a></div><div class="ttdoc">Provides the logic to handle main page.</div></div>
 <!-- start footer part -->
 		<script src="custom.js"></script>
 	</body>

@@ -3,7 +3,7 @@
  * @brief Provides a utility for the application
  * @author Nils Milewski (nimile/10010480)
  */
-
+#include "bluetoothutil.h"
 #ifndef UTILS_H
 #define UTILS_H
 
@@ -13,5 +13,6 @@
 // Same as above just for static attributes/methods.
 #define static_methods
 #define static_attributes
+
 
 #endif // UTILS_H

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['usersettingswindow_167',['userSettingsWindow',['../namespacehaevn_1_1esp_1_1pages.html#a4b04acbf1cb44485bfcf6e76cfa20001ae43ef8370e80b7f176e3f2f8cdbb4d74',1,'haevn::esp::pages']]]
+  ['ref_5fweight_203',['ref_weight',['../namespacehaevn_1_1esp_1_1bluetooth_1_1util.html#ab32ff6b45b627dd98a86455af184f88aaba0fc4fec4dd6402d013e41284ccb347',1,'haevn::esp::bluetooth::util']]]
 ];

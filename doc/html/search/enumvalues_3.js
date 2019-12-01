@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['settingswindow_165',['settingsWindow',['../namespacehaevn_1_1esp_1_1pages.html#a4b04acbf1cb44485bfcf6e76cfa20001ad086651bad4a0c31126553fb55b55c2a',1,'haevn::esp::pages']]],
-  ['statisticswindow_166',['statisticsWindow',['../namespacehaevn_1_1esp_1_1pages.html#a4b04acbf1cb44485bfcf6e76cfa20001add796b84e5f4196b04b56185cf546995',1,'haevn::esp::pages']]]
+  ['mainwindow_201',['mainWindow',['../namespacehaevn_1_1esp_1_1core.html#a0dc12c0843b33740c81a640878e9e5e1ac1463062c6031a1b0491323df8f08353',1,'haevn::esp::core']]],
+  ['max_5fweight_202',['max_weight',['../namespacehaevn_1_1esp_1_1bluetooth_1_1util.html#ab32ff6b45b627dd98a86455af184f88aa4daceb3f191997232a86df64e0020cb6',1,'haevn::esp::bluetooth::util']]]
 ];
