@@ -31,7 +31,7 @@ namespace haevn::esp::core{
     private attributes:
 
         QString fileName = "user.set";
-        QStringList themes;
+        QStringList* themes;
 
         QString userName;
         uint userWeight;
@@ -63,6 +63,7 @@ namespace haevn::esp::core{
         int themeNameToIndex();
         QStringList getThemes();
 
+        ~UserSettings();
     signals:
         void userNameChanged(QString name);
         void userWeightChanged(uint weight);

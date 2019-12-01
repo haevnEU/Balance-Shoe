@@ -7,12 +7,22 @@ using namespace haevn::esp::core;
 
 UserSettings::UserSettings(){
     load();
-    themes.append("AMOLED");
-    themes.append("Aqua");
-    themes.append("ConsoleStyle");
-    themes.append("ElegantDark");
-    themes.append("MaterialDark");
-    themes.append("Ubuntu");
+    themes = new QStringList();
+    themes->append("AMOLED");
+    themes->append("Aqua");
+    themes->append("ConsoleStyle");
+    themes->append("ElegantDark");
+    themes->append("MaterialDark");
+    themes->append("Diffnes");
+    themes->append("SpyBot");
+    themes->append("Devsion");
+    themes->append("Darkeum");
+
+}
+
+UserSettings::~UserSettings(){
+    themes->clear();
+    delete (themes);
 }
 
 void UserSettings::load(){
@@ -77,17 +87,17 @@ void UserSettings::setThemeName(int index){
 }
 
 QStringList UserSettings::getThemes(){
-    return themes;
+    return *themes;
 }
 
 QString UserSettings::indexToThemeName(int index){
-    return themes.at(index);
+    return themes->at(index);
 }
 
 int UserSettings::themeNameToIndex(QString name){
-    return themes.indexOf(name);
+    return themes->indexOf(name);
 }
 
 int UserSettings::themeNameToIndex(){
-    return themes.indexOf(themeName);
+    return themes->indexOf(themeName);
 }

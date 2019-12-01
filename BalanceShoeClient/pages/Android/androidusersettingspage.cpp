@@ -48,6 +48,7 @@ void AndroidUserSettingsPage::currentIndexChanged(int index){
 
 }
 
+#include <QMessageBox>
 QLayout* AndroidUserSettingsPage::createLayout(){
 
     auto layout = new QGridLayout();
@@ -65,9 +66,14 @@ QLayout* AndroidUserSettingsPage::createLayout(){
     inputMaxWeight->setValidator( new QIntValidator(0, 100, this) );
     inputWeight->setValidator( new QIntValidator(0, 100, this) );
 
+ QString msg ("");
     for(auto theme : core::UserSettings::getUserSettings().getThemes()){
+        msg.append(theme).append("\n");
         comboBoxTheme->addItem(theme);
     }
+
+    QMessageBox::information(this, "DBG", msg);
+
     comboBoxTheme->setCurrentIndex(core::UserSettings::getUserSettings().themeNameToIndex());
 
     auto labelName = new QLabel("Name");

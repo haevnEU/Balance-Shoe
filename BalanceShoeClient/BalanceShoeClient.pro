@@ -30,14 +30,19 @@ DISTFILES += \
     styles/AMOLED.qss \
     styles/Aqua.qss \
     styles/ConsoleStyle.qss \
+    styles/Darkeum.qss \
+    styles/Devsion.qss \
+    styles/Diffnes.qss \
     styles/ElegantDark.qss \
     styles/LICENSE \
     styles/MaterialDark.qss \
+    styles/SpyBot.qss \
     styles/Ubuntu.qss
 
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android-sources
 
 RESOURCES += \
+    themes.qrc \
     themes.qrc \
     themes.qrc \
     themes.qrc \
