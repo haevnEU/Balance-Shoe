@@ -56,7 +56,7 @@ MacMainPage::MacMainPage(QWidget *parent) : QWidget(parent){
 
 
     connect(btSave, &QPushButton::clicked, [this](){
-        QMessageBox::information(this, "Bluetooth create command", bluetooth::util::test());
+        QMessageBox::information(this, "Bluetooth create command", bluetooth::BluetoothCommandHandler::getBluetoothCommandHandler().test());
     });
 
     connect(btLoad, &QPushButton::clicked, [this](){

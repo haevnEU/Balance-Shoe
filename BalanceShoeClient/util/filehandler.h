@@ -12,6 +12,11 @@
 /* Qt system */
 #include <QObject>    // Used as base class
 
+#include <QDebug>
+#include <QDir>
+#include <QFile>
+#include <QStandardPaths>
+
 /* Project includes */
 #include "utils.h"  // Used to access project utilities
 
@@ -41,7 +46,7 @@ namespace haevn::esp::util{
          * @brief FileHandler This constructor initializes a new instance of this class.
          * @author Nils Milewski (nimile/10010480)
          */
-        FileHandler();
+        FileHandler(QObject* parent = nullptr);
 
         /**
          * @brief ~FileHandler Destructor

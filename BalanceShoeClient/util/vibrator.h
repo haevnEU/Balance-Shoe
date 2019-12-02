@@ -34,7 +34,7 @@ namespace haevn::esp::util{
 
     public static_methods:
         /**
-         * @brief getWindowHandler This static method returns the singleton object of the class.
+         * @brief getVibrator This static method returns the singleton object of the class.
          * @details This static method initializes a new instance of this class iff none exist
          *          otherwise the existing instance will be returned.
          *          This singleton implementation will provide automatic destruction if the
@@ -64,7 +64,7 @@ namespace haevn::esp::util{
          *          Under desktop it will do nothing.<br>
          * @author Nils Milewski (nimile/10010480)
          */
-        Vibrator();
+        Vibrator(QObject* parent = nullptr);
 
     public slots:
 

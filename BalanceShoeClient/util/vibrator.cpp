@@ -5,7 +5,7 @@
 
 using namespace haevn::esp::util;
 
-Vibrator::Vibrator() : QObject(){
+Vibrator::Vibrator(QObject* parent) : QObject(parent){
 
 #if 0 // defined(Q_OS_ANDROID)
     QAndroidJniObject vibroString = QAndroidJniObject::fromString("vibrator");

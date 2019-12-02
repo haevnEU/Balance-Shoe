@@ -2,20 +2,10 @@
 
 using namespace haevn::esp::util;
 
-FileHandler::FileHandler()
-{
+FileHandler::FileHandler(QObject* parent) : QObject(parent){}
 
-}
+FileHandler::~FileHandler(){}
 
-FileHandler::~FileHandler()
-{
-
-}
-
-#include <QDebug>
-#include <QDir>
-#include <QFile>
-#include <QStandardPaths>
 void FileHandler::save(QString data, QString path){
 
     QString appDataPath = QStandardPaths::standardLocations(QStandardPaths::AppDataLocation).value(0);
