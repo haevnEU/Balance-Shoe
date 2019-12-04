@@ -8,8 +8,8 @@
 #include "core/windowhandler.h"
 #include "core/usersettings.h"
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]){
+
     QApplication a(argc, argv);
 
     haevn::esp::core::UserSettings::getUserSettings();
