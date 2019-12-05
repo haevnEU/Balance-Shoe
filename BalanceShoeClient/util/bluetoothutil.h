@@ -10,20 +10,24 @@
 
 namespace haevn::esp::bluetooth{
 
-    #define START_BYTE 0xAA
-    #define END_BYTE 0xFF
+    #define START_BYTE 0xAF
+    #define END_BYTE 0xFE
 
     // USER settings
-    #define WEIGHT      0x01
-    #define MAX_WEIGHT  0x02
+    #define USER_WEIGHT      0x01
+    #define USER_MAX_WEIGHT  0x02
 
     // Device settings
-    #define BAUD        0xA1
-    #define DOUT        0xA2
-    #define SCK         0xA3
-    #define REF_WEIGHT  0xA4
-    #define TOLERANCE   0xA5
-    #define SCALE_VALUE 0xA6
+    #define CONFIG_BAUD        0xA1
+    #define CONFIG_DOUT        0xA2
+    #define CONFIG_SCK         0xA3
+    #define CONFIG_REF_WEIGHT  0xA4
+    #define CONFIG_TOLERANCE   0xA5
+    #define CONFIG_SCALE_VALUE 0xA6
+
+    #define DEVICE_BATTERY_STATE 0xB1
+    #define DEVICE_LOG 0xB2
+
 
 
     /**
@@ -31,15 +35,17 @@ namespace haevn::esp::bluetooth{
      * @author Nils Milewski (nimile/10010480)
      */
     enum bluetoothCommands{
-        weight = WEIGHT,
-        max_weight = MAX_WEIGHT,
+        weight = USER_WEIGHT,
+        max_weight = USER_MAX_WEIGHT,
 
-        baud = BAUD,
-        dout = DOUT,
-        sck = SCK,
-        ref_weight = REF_WEIGHT,
-        tolerance = TOLERANCE,
-        scale_value = SCALE_VALUE
+        baud = CONFIG_BAUD,
+        dout = CONFIG_DOUT,
+        sck = CONFIG_SCK,
+        ref_weight = CONFIG_REF_WEIGHT,
+        tolerance = CONFIG_TOLERANCE,
+        scale_value = CONFIG_SCALE_VALUE,
+        battery_state = DEVICE_BATTERY_STATE,
+        device_log = DEVICE_LOG
     };
 
     class BluetoothCommandHandler : public QObject{
