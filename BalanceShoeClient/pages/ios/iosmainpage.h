@@ -99,6 +99,14 @@ namespace haevn::esp::pages{
           * @author Nils Milewski (nimile/10010480)
           */
         void buttonDevPressed();
+
+        /**
+         * @brief showBluetoothDialog This method opens a dialog of bluetooth devices nearby.
+         * @details This slot will be invoked if buttonOn is pressed.
+         *          It will open a dialog window where all bluetooth devices nearby gets shown.
+         * @author Marc Nowakowski (marcnow/10009339)
+         */
+        void showBluetoothDialog();
     };
 }
 

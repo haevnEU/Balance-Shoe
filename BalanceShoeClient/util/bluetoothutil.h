@@ -29,7 +29,6 @@ namespace haevn::esp::bluetooth{
     #define DEVICE_LOG 0xB2
 
 
-
     /**
      * @brief The commands enum This enumeration is used to differentiate between different commands
      * @author Nils Milewski (nimile/10010480)

@@ -1,5 +1,6 @@
 QT += core gui
 QT += widgets
+QT += bluetooth
 #QT += virtualkeyboard
 
 CONFIG += c++17
@@ -50,6 +51,7 @@ RESOURCES += \
     themes.qrc
 
 HEADERS += \
+    core/bluetoothhandler.h \
     core/usersettings.h \
     core/windowhandler.h \
     pages/Android/androidintropage.h \
@@ -79,6 +81,7 @@ HEADERS += \
     widgets/customlineedit.h
 
 SOURCES += \
+    core/bluetoothhandler.cpp \
     core/usersettings.cpp \
     core/windowhandler.cpp \
     main.cpp \

@@ -7,6 +7,7 @@
 #include <QHBoxLayout>
 #include <QMessageBox>
 #include "util/bluetoothutil.h"
+#include "../../core/bluetoothhandler.h"
 
 using namespace haevn::esp::pages;
 
@@ -93,6 +94,11 @@ void IosMainPage::buttonShowUserSettings(){
 
 void IosMainPage::buttonDevPressed(){
     core::WindowHandler::getWindowHandler().show(core::windows::devSettingsWindow);
+}
+
+void IosMainPage::showBluetoothDialog() {
+    auto b = new core::BluetoothHandler(this);
+    b->show();
 }
 
 

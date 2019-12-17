@@ -7,6 +7,7 @@
 #include <QHBoxLayout>
 #include <QMessageBox>
 #include "util/bluetoothutil.h"
+#include "../../core/bluetoothhandler.h"
 
 using namespace haevn::esp::pages;
 
@@ -48,6 +49,7 @@ MacMainPage::MacMainPage(QWidget *parent) : QWidget(parent){
     connect(buttonOff, &QPushButton::pressed, this, &MacMainPage::buttonOffPressed);
     connect(buttonStat, &QPushButton::pressed, this, &MacMainPage::buttonDevPressed);
     connect(buttonUserSettings, &QPushButton::pressed, this, &MacMainPage::buttonShowUserSettings);
+    connect(buttonOn, &QPushButton::pressed, this, &MacMainPage::showBluetoothDialog);
 
 
 
@@ -89,6 +91,11 @@ void MacMainPage::buttonShowUserSettings(){
 
 void MacMainPage::buttonDevPressed(){
     core::WindowHandler::getWindowHandler().show(core::windows::devSettingsWindow);
+}
+
+void MacMainPage::showBluetoothDialog() {
+    auto b = new core::BluetoothHandler(this);
+    b->show();
 }
 
 
