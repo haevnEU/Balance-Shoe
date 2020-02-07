@@ -45,14 +45,8 @@ private:
     const int servicePin = 1234;
     bool displayed;
 
-    QLineEdit* inWeight;
     QLineEdit* inMaxWeight;
-
-    QPushButton* btDeviceFound;
-    QPushButton* btDeviceConnected;
-    QPushButton* btDeviceTest;
-
-    QPushButton* btSearch;
+    QLineEdit* inName;
 
     QPushButton* btSave;
     QPushButton* btDiscard;
@@ -72,7 +66,6 @@ signals:
 
 public slots:
     void nameChanged(QString name);
-    void weightChanged(int weight);
     void maxWeightChanged(int weight);
     void batteryPercentageChanged(int battery);
 };

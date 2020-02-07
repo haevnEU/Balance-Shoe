@@ -182,7 +182,8 @@ void ESP32::createCharacteristic(QLowEnergyCharacteristic& c){
 }
 
 void ESP32::characteristicFound(){
-    if(charCounter >= 6){
+    qDebug() << charCounter;
+    if(charCounter >= 2){
         emit characteristicsFound();
     }
 }

@@ -4,27 +4,27 @@
 #include <QGridLayout>
 #include <qlabel.h>
 
-ConnectPage::ConnectPage(QWidget *parent) : QWidget(parent), model(Model::getInstance()), esp(ESP32::getInstance()){
+ConnectPage::ConnectPage(QString text, bool isSettingsPage, QFont* font, QWidget *parent) : QWidget(parent), model(Model::getInstance()), esp(ESP32::getInstance()){
 
-    btNext = new QPushButton(this);
     btSearch = new QPushButton(this);
     btDeviceTest = new QPushButton(this);
     btDeviceFound = new QPushButton(this);
     btDeviceConnected = new QPushButton(this);
 
-    QLabel* lbWelcome = new QLabel("Verbinden", this);
+    QLabel* lbWelcome = new QLabel(text, this);
     QLabel* lbDeviceTested = new QLabel("Test: ", this);
     QLabel* lbDeviceFound = new QLabel("Gefunden: ", this);
     QLabel* lbDeviceConnected = new QLabel("Verbunden: ", this);
 
-    QFont font = lbWelcome->font();
+    QFont usedFont = nullptr != font ? *font : lbWelcome->font();
     QGridLayout* layout = new QGridLayout(this);
-
-    font.setPointSize(32);
-    lbWelcome->setFont(font);
-    lbDeviceFound->setFont(font);
-    lbDeviceTested->setFont(font);
-    lbDeviceConnected->setFont(font);
+    int pointSize = usedFont.pointSize();
+    usedFont.setPointSize(32);
+    lbWelcome->setFont(usedFont);
+    usedFont.setPointSize(pointSize);
+    lbDeviceFound->setFont(usedFont);
+    lbDeviceTested->setFont(usedFont);
+    lbDeviceConnected->setFont(usedFont);
 
     lbWelcome->setAlignment(Qt::AlignCenter);
     lbDeviceFound->setAlignment(Qt::AlignLeft | Qt::AlignCenter);
@@ -42,14 +42,10 @@ ConnectPage::ConnectPage(QWidget *parent) : QWidget(parent), model(Model::getIns
     layout->addWidget(lbDeviceTested, 10, 0, Qt::AlignLeft);
     layout->addWidget(btDeviceTest, 10, 1, Qt::AlignLeft);
 
-    layout->addWidget(btNext, 11, 1, 1, 1);
-
-    connect(btNext, &QPushButton::pressed, this, &ConnectPage::buttonNextPressed);
     connect(btSearch, &QPushButton::pressed, this, &ConnectPage::buttonSearchPressed);
 
     setLayout(layout);
 
-    btNext->setFlat(true);
     btSearch->setFlat(true);
     btDeviceTest->setFlat(true);
     btDeviceFound->setFlat(true);
@@ -57,15 +53,12 @@ ConnectPage::ConnectPage(QWidget *parent) : QWidget(parent), model(Model::getIns
 
 
     btSearch->setToolTip("Sohle suchen.");
-    btNext->setIcon(QIcon(":/icons/res/baseline_navigate_next_white.png"));
     btDeviceTest->setIcon(QIcon(":/icons/res/baseline_schedule_white.png"));
     btDeviceFound->setIcon(QIcon(":/icons/res/baseline_schedule_white.png"));
     btDeviceConnected->setIcon(QIcon(":/icons/res/baseline_schedule_white.png"));
     btSearch->setIcon(QIcon(":/icons/res/baseline_bluetooth_searching_white.png"));
 
 #ifdef Q_OS_MACOS
-    btNext->setIconSize(QSize(50, 50));
-    btNext->setFixedSize(QSize(50, 50));
     btSearch->setIconSize(QSize(50, 50));
     btSearch->setFixedSize(QSize(50, 50));
     btDeviceTest->setIconSize(QSize(50, 50));
@@ -76,8 +69,6 @@ ConnectPage::ConnectPage(QWidget *parent) : QWidget(parent), model(Model::getIns
     btDeviceConnected->setFixedSize(QSize(50, 50));
 #else
 
-    btNext->setIconSize(QSize(100, 100));
-    btNext->setFixedSize(QSize(100, 100));
     btSearch->setIconSize(QSize(100, 100));
     btSearch->setFixedSize(QSize(100, 100));
     btDeviceTest->setIconSize(QSize(100, 100));
@@ -88,14 +79,36 @@ ConnectPage::ConnectPage(QWidget *parent) : QWidget(parent), model(Model::getIns
     btDeviceConnected->setFixedSize(QSize(100, 100));
 #endif
 
-    btNext->setEnabled(false);
-    connect(&ESP32::getInstance(), &ESP32::deviceConnected, this, [=]{
-        btNext->setEnabled(true);
-    });
-    connect(&ESP32::getInstance(), &ESP32::deviceDisconnected, this, [=]{
-        btNext->setEnabled(false);
-    });
+    if(isSettingsPage){
+#ifdef Q_OS_MACOS
+        btNext = new QPushButton(this);
+        layout->addWidget(btNext, 11, 1, 1, 1);
 
+        connect(btNext, &QPushButton::pressed, this, &ConnectPage::buttonNextPressed);
+        btNext->setFlat(true);
+        btNext->setIcon(QIcon(":/icons/res/baseline_navigate_next_white.png"));
+        btNext->setIconSize(QSize(50, 50));
+        btNext->setFixedSize(QSize(50, 50));
+#else
+        btNext->setIconSize(QSize(100, 100));
+        btNext->setFixedSize(QSize(100, 100));
+#endif
+    btNext->setEnabled(false);
+        connect(&ESP32::getInstance(), &ESP32::deviceConnected, this, [=]{
+            btNext->setEnabled(true);
+        });
+
+        connect(&ESP32::getInstance(), &ESP32::deviceDisconnected, this, [=]{
+            btNext->setEnabled(false);
+        });
+    }else{
+        connect(&ESP32::getInstance(), &ESP32::deviceConnected, this, [=]{
+            emit deviceConnected();
+        });
+        connect(&ESP32::getInstance(), &ESP32::deviceDisconnected, this, [=]{
+            emit deviceDisconnected();
+        });
+    }
     connect(btSearch, &QPushButton::pressed, &esp, &ESP32::discover);
 
     connect(&esp, &ESP32::deviceFound, this, [=]{

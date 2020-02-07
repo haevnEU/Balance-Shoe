@@ -30,17 +30,11 @@
 SettingsPage::SettingsPage(QWidget *parent) : QWidget(parent), model(Model::getInstance()), esp(ESP32::getInstance()) {
     displayed = false;
 
-    inWeight = new QLineEdit(this);
-    inWeight->setValidator(new QIntValidator(0, 500, this));
+    inName = new QLineEdit(this);
 
     inMaxWeight = new QLineEdit(this);
     inMaxWeight->setValidator(new QIntValidator(0, 500, this));
 
-
-    btSearch = new QPushButton(this);
-    btDeviceFound = new QPushButton(this);
-    btDeviceConnected = new QPushButton(this);
-    btDeviceTest = new QPushButton(this);
     btSave = new QPushButton(this);
     btDiscard = new QPushButton(this);
 
@@ -49,56 +43,25 @@ SettingsPage::SettingsPage(QWidget *parent) : QWidget(parent), model(Model::getI
 
     QGridLayout* layout = new QGridLayout(this);
 
-    QLabel* lbWeight = new QLabel("Gewicht: ", this);
-    QFont font = lbWeight->font();
-    lbWeight->setFont(font);
-    lbWeight->setAlignment(Qt::AlignLeft);
-    layout->addWidget(lbWeight, 3, 0, 1, 1);
-    layout->addWidget(inWeight, 3, 1, 1, 2);
+    QLabel* lbName = new QLabel("Name: ", this);
+    QFont font = lbName->font();
+    lbName->setFont(font);
+    lbName->setAlignment(Qt::AlignLeft);
+    layout->addWidget(lbName, 4, 0);
+    layout->addWidget(inName, 4, 1, 1, 2);
 
     QLabel* lbMaxWeight = new QLabel("Maximales Gewicht: ", this);
     lbMaxWeight->setFont(font);
     lbMaxWeight->setAlignment(Qt::AlignLeft);
-    layout->addWidget(lbMaxWeight, 4, 0, 1, 1);
-    layout->addWidget(inMaxWeight, 4, 1, 1, 2);
+    layout->addWidget(lbMaxWeight, 5, 0);
+    layout->addWidget(inMaxWeight, 5, 1, 1, 2);
 
-    layout->addWidget(btSearch, 6, 1, 1, 1);
-
-    QLabel* lbDeviceFound = new QLabel("Gefunden: ", this);
-    lbDeviceFound->setFont(font);
-    lbDeviceFound->setAlignment(Qt::AlignLeft | Qt::AlignCenter);
-    layout->addWidget(lbDeviceFound, 7, 0, Qt::AlignLeft);
-    layout->addWidget(btDeviceFound, 7, 1, Qt::AlignLeft);
-
-    QLabel* lbDeviceConnected = new QLabel("Verbunden: ", this);
-    lbDeviceConnected->setFont(font);
-    lbDeviceConnected->setAlignment(Qt::AlignLeft | Qt::AlignCenter);
-    layout->addWidget(lbDeviceConnected, 8, 0, Qt::AlignLeft);
-    layout->addWidget(btDeviceConnected, 8, 1, Qt::AlignLeft);
-
-    QLabel* lbDeviceTested = new QLabel("Test: ", this);
-    lbDeviceTested->setFont(font);
-    lbDeviceTested->setAlignment(Qt::AlignLeft | Qt::AlignCenter);
-    layout->addWidget(lbDeviceTested, 9, 0, Qt::AlignLeft);
-    layout->addWidget(btDeviceTest, 9, 1, Qt::AlignLeft);
-
-    layout->addWidget(btDiscard, 10, 0, 1, 1);
-    layout->addWidget(btSave, 10, 0, 1, 1);
+    layout->addWidget(new ConnectPage("", false, &font, this), 6, 0, 1, 3);
 
 
     inMaxWeight->setText(QString::number(static_cast<double>(model.getMaxWeight())));
+    inName->setText(model.getName());
     setLayout(layout);
-
-    btSearch->setFlat(true);
-    btSearch->setToolTip("Sohle suchen.");
-    btDeviceFound->setFlat(true);
-    btDeviceConnected->setFlat(true);
-    btDeviceTest->setFlat(true);
-
-    btSearch->setIcon(QIcon(":/icons/res/baseline_bluetooth_searching_white.png"));
-    btDeviceFound->setIcon(QIcon(":/icons/res/baseline_schedule_white.png"));
-    btDeviceConnected->setIcon(QIcon(":/icons/res/baseline_schedule_white.png"));
-    btDeviceTest->setIcon(QIcon(":/icons/res/baseline_schedule_white.png"));
 
     btSave->setFlat(true);
     btDiscard->setFlat(true);
@@ -112,41 +75,25 @@ SettingsPage::SettingsPage(QWidget *parent) : QWidget(parent), model(Model::getI
     btSave->setFixedSize(QSize(50, 50));
     btDiscard->setIconSize(QSize(50, 50));
     btDiscard->setFixedSize(QSize(50, 50));
-    btSearch->setIconSize(QSize(50, 50));
-    btSearch->setFixedSize(QSize(50, 50));
-    btDeviceFound->setIconSize(QSize(50, 50));
-    btDeviceFound->setFixedSize(QSize(50, 50));
-    btDeviceConnected->setIconSize(QSize(50, 50));
-    btDeviceConnected->setFixedSize(QSize(50, 50));
-    btDeviceTest->setIconSize(QSize(50, 50));
-    btDeviceTest->setFixedSize(QSize(50, 50));
 #else
 
     btSave->setIconSize(QSize(100, 100));
     btSave->setFixedSize(QSize(100, 100));
     btDiscard->setIconSize(QSize(100, 100));
     btDiscard->setFixedSize(QSize(100, 100));
-    btSearch->setIconSize(QSize(100, 100));
-    btSearch->setFixedSize(QSize(100, 100));
-    btDeviceFound->setIconSize(QSize(100, 100));
-    btDeviceFound->setFixedSize(QSize(100, 100));
-    btDeviceConnected->setIconSize(QSize(100, 100));
-    btDeviceConnected->setFixedSize(QSize(100, 100));
-    btDeviceTest->setIconSize(QSize(100, 100));
-    btDeviceTest->setFixedSize(QSize(100, 100));
 #endif
 
     lbName->setText(model.getName());
     lbBattery->setText(QString::number(model.getBatteryPercentage()).append(" %"));
-    layout->addWidget(lbName, 0, 0, 1, 1, Qt::AlignTop | Qt::AlignLeft);
-    layout->addWidget(lbBattery, 0, 2, 1,1,  Qt::AlignTop | Qt::AlignRight);
+    layout->addWidget(lbName, 0, 0, Qt::AlignTop | Qt::AlignLeft);
+    layout->addWidget(lbBattery, 0, 2,  Qt::AlignTop | Qt::AlignRight);
 
-    layout->addWidget(btSave, 11, 2, 1, 1, Qt::AlignBottom);
-    layout->addWidget(btDiscard, 11, 0, 1, 1, Qt::AlignBottom);
+    layout->addWidget(btDiscard, 11, 0, Qt::AlignBottom);
+    layout->addWidget(btSave, 11, 2, Qt::AlignBottom);
 
     connect(btSave, &QPushButton::pressed, this, [=]{
         model.setMaxWeight(inMaxWeight->text().toInt());
-
+        model.setName(inName->text());
         model.save();
         PageHandler::getInstance().requestPage(page::mainPage);
     });
@@ -178,31 +125,6 @@ SettingsPage::SettingsPage(QWidget *parent) : QWidget(parent), model(Model::getI
     connect(&model, &Model::maxWeightChanged, this, &SettingsPage::maxWeightChanged);
     connect(&model, &Model::batterPercentageChanged, this, &SettingsPage::batteryPercentageChanged);
 
-    connect(btSearch, &QPushButton::pressed, &esp, &ESP32::discover);
-
-    connect(&esp, &ESP32::deviceFound, this, [=]{
-            btDeviceFound->setIcon(QIcon(":/icons/res/baseline_check_circle_outline_white.png"));
-    });
-
-    connect(&esp, &ESP32::deviceNotFound, this, [=]{
-            btDeviceFound->setIcon(QIcon(":/icons/res/baseline_highlight_off_white.png"));
-    });
-
-    connect(&esp, &ESP32::serviceFound, this, [=]{
-            btDeviceConnected->setIcon(QIcon(":/icons/res/baseline_check_circle_outline_white.png"));
-    });
-
-    connect(&esp, &ESP32::serviceNotFound, this, [=]{
-            btDeviceConnected->setIcon(QIcon(":/icons/res/baseline_highlight_off_white.png"));
-    });
-
-    connect(&esp, &ESP32::characteristicsFound, this, [=]{
-        btDeviceTest->setIcon(QIcon(":/icons/res/baseline_check_circle_outline_white.png"));
-    });
-
-    connect(&esp, &ESP32::characteristicsNotFound, this, [=]{
-        btDeviceTest->setIcon(QIcon(":/icons/res/baseline_highlight_off_white.png"));
-    });
 }
 
 SettingsPage::~SettingsPage(){
@@ -210,6 +132,8 @@ SettingsPage::~SettingsPage(){
 
 void SettingsPage::show(){
     displayed = true;
+    inName->setText(model.getName());
+    inMaxWeight->setText(QString::number(static_cast<double>(model.getMaxWeight())));
     QWidget::show();
 }
 
@@ -225,10 +149,6 @@ bool SettingsPage::isDisplayed(){
 
 void SettingsPage::nameChanged(QString name){
     lbName->setText(name);
-}
-
-void SettingsPage::weightChanged(int weight){
-    inWeight->setText(QString::number(weight).append(" kg"));
 }
 
 void SettingsPage::maxWeightChanged(int weight){

@@ -43,13 +43,9 @@ private:
 
     QLineEdit* inName;
     QLineEdit* inMaxWeight;
+    QLabel* lbError;
 
-    QPushButton* btSearch;
     QPushButton* btNext;
-    QPushButton* btDeviceFound;
-    QPushButton* btDeviceConnected;
-    QPushButton* btDeviceTest;
-
     bool displayed;
     Model& model;
     ESP32& esp;

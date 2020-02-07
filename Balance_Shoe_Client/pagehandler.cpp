@@ -27,7 +27,7 @@ PageHandler::PageHandler(QObject *parent) : QObject(parent), model(Model::getIns
     mainPage = new MainPage();
     welcomePage = new WelcomePage();
     settingsPage = new SettingsPage();
-    connectPage = new ConnectPage();
+    connectPage = new ConnectPage("Verbinden", true);
     QFile styleFile(":/style/res/QTDark.qss");
     styleFile.open(QFile::ReadOnly);
     QString style(styleFile.readAll());

@@ -74,8 +74,7 @@ MainPage::MainPage(QWidget *parent) : QWidget(parent), model(Model::getInstance(
 
 
     warner = new QSound("qrc:/sound/res/nebelhorn.wav");
-    warner->play("qrc:/sound/res/nebelhorn.wav");
-    warner->stop();
+
     connect(&model, &Model::maximumReached, this, [=]{
         if(isOn){
             if(warner->isFinished()){

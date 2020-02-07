@@ -56,8 +56,7 @@ void Model::setBatteryPercentage(int batteryPercentage){
 }
 
 void Model::setCurrentWeight(float weight){
-    qDebug() << weight;
-    if(fabs(static_cast<double>(currentWeight) - static_cast<double>(weight)) < 0.00001){
+    if(! (fabs(static_cast<double>(weight) - static_cast<double>(this->currentWeight)) < std::numeric_limits<double>::epsilon())){
         this->currentWeight = weight;
         emit currentWeightChanged(this->currentWeight);
 
@@ -77,9 +76,9 @@ void Model::save(){
 
     QString path = "model.bsc";
     QString data = "";
-    data.append(getName()).append("\n");
-    data.append(QString::number(static_cast<double>(getCurrentWeight()))).append("\n");
-    data.append(QString::number(static_cast<double>(getMaxWeight()))).append("\n");
+    data.append("Name=").append(getName()).append("\n");
+    data.append("Max weight=").append(QString::number(static_cast<double>(getMaxWeight()))).append("\n");
+    data.append("First run=").append(firstRun == true ? "true" : "false");
 
     QString appDataPath = QStandardPaths::standardLocations(QStandardPaths::AppDataLocation).value(0);
     if (!QDir(appDataPath).exists()) {
@@ -94,6 +93,16 @@ void Model::save(){
     }
 
     file.close();
+}
+
+void Model::assignAttribute(QString key, QString value){
+    if("name" == key){
+        name = value;
+    }else if("maxweight" == key){
+        maxWeight = value.toFloat();
+    }else if("firstrun" == key){
+        firstRun = "true" == value ? true : false;
+    }
 }
 
 void Model::load(){
@@ -112,13 +121,20 @@ void Model::load(){
     }
     else{
         data = file.readAll();
+        data = data.replace(" ", "");
     }
 
     file.close();
     QStringList values = data.split("\n");
-    if(values.size() >= 3){
-        setName(values[0]);
-        setCurrentWeight(values[1].toFloat());
-        setMaxWeight(values[2].toFloat());
+    QString key, value;
+    for(QString str : values){
+        if(!str.contains("=")){
+            continue;
+        }else if(str.startsWith("#")){
+            continue;
+        }
+        key = str.split("=")[0].toLower();
+        value = str.split("=")[1].toLower();
+        assignAttribute(key, value);
     }
 }

@@ -49,6 +49,7 @@ private:
     explicit Model(QObject *parent = nullptr);
     ESP32& esp;
 
+    void assignAttribute(QString key, QString value);
 public:
 
         float getMaxWeight(){

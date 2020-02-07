@@ -10,6 +10,8 @@
 
 class ConnectPage : public QWidget{
 
+    Q_OBJECT
+
 private:
 
     QPushButton* btSearch;
@@ -22,7 +24,7 @@ private:
     ESP32& esp;
 
 public:
-    explicit ConnectPage(QWidget *parent = nullptr);
+    explicit ConnectPage(QString text, bool isSettingsPage = false, QFont* font = nullptr, QWidget *parent = nullptr);
     ~ConnectPage();
 
     void hide();
@@ -31,7 +33,9 @@ public:
 public slots:
     void buttonNextPressed();
     void buttonSearchPressed();
-
+signals:
+    void deviceDisconnected();
+    void deviceConnected();
 };
 
 #endif // CONNECTPAGE_H
