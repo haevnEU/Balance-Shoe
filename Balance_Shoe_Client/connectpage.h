@@ -7,6 +7,7 @@
 #include <QObject>
 #include <QPushButton>
 #include <QWidget>
+#include "circleprogressbar.h"
 
 class ConnectPage : public QWidget{
 
@@ -14,11 +15,12 @@ class ConnectPage : public QWidget{
 
 private:
 
+    CircleProgressBar* progressDeviceSearch;
+    CircleProgressBar* progressDeviceFound;
+    CircleProgressBar* progressDeviceTested;
+
     QPushButton* btSearch;
     QPushButton* btNext;
-    QPushButton* btDeviceFound;
-    QPushButton* btDeviceConnected;
-    QPushButton* btDeviceTest;
 
     Model& model;
     ESP32& esp;

@@ -124,11 +124,9 @@ SettingsPage::SettingsPage(QWidget *parent) : QWidget(parent), model(Model::getI
     connect(&model, &Model::nameChanged, this, &SettingsPage::nameChanged);
     connect(&model, &Model::maxWeightChanged, this, &SettingsPage::maxWeightChanged);
     connect(&model, &Model::batterPercentageChanged, this, &SettingsPage::batteryPercentageChanged);
-
 }
 
-SettingsPage::~SettingsPage(){
-}
+SettingsPage::~SettingsPage(){}
 
 void SettingsPage::show(){
     displayed = true;
@@ -138,7 +136,6 @@ void SettingsPage::show(){
 }
 
 void SettingsPage::hide(){
-
     displayed = false;
     QWidget::hide();
 }

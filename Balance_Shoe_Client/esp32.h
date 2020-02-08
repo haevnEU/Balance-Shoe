@@ -25,6 +25,7 @@
 #include <QBluetoothDeviceDiscoveryAgent>
 #include <QLowEnergyController>
 #include <QObject>
+#include <QTimer>
 
 enum ESP32Characteristics{
     userWeight,
@@ -62,6 +63,7 @@ private:
    int charCounter = 0;
    bool deviceConnected_m = false;
 
+   QTimer* timeout;
 
 private:
    explicit ESP32(QObject *parent = nullptr);
@@ -102,6 +104,9 @@ signals:
 
     void deviceConnected();
     void deviceDisconnected();
+
+    void deviceTimeout();
+
 public slots:
     void discover();
     void send(ESP32Characteristics which, QByteArray data);

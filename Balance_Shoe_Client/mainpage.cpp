@@ -32,12 +32,13 @@ MainPage::MainPage(QWidget *parent) : QWidget(parent), model(Model::getInstance(
 
     QGridLayout* layout = new QGridLayout();
 
-    btOnOff = new QPushButton("On", this);
+    btOff = new OffIcon(this);
     btSettings = new QPushButton("Settings", this);
 
     lbName = new QLabel("Name", this);
     lbCurrentBatteryPercentage = new QLabel("", this);
     lbCurrentPercentage = new QLabel("Aktuelle Belastung: ", this);
+
 
     displayMaxWeight = new QLineEdit(this);
     displayCurrentWeight = new QLineEdit(this);
@@ -45,27 +46,27 @@ MainPage::MainPage(QWidget *parent) : QWidget(parent), model(Model::getInstance(
 
     QLabel* lbMaxWeight = new QLabel("Maximum: ", this);
 
+    lbName->setFixedWidth(150);
+    lbMaxWeight->setFixedWidth(150);
     displayed = false;
 
-    layout->addWidget(lbName, 0, 0, 1, 1, Qt::AlignTop | Qt::AlignLeft);
-    layout->addWidget(lbCurrentBatteryPercentage, 0, 2, 1,1,  Qt::AlignTop | Qt::AlignRight);
+    layout->addWidget(lbName, 0, 0, Qt::AlignTop | Qt::AlignLeft);
+    layout->addWidget(lbCurrentBatteryPercentage, 0, 1,  Qt::AlignTop | Qt::AlignRight);
 
-    layout->addWidget(lbMaxWeight, 2, 0, 1, 1,  Qt::AlignTop);
-    layout->addWidget(displayMaxWeight, 2, 1, 1, 2,  Qt::AlignTop);
-    layout->addWidget(lbCurrentPercentage, 3, 0, 1, 1,  Qt::AlignTop);
-    layout->addWidget(displayCurrentWeight, 3, 1, 1, 2,  Qt::AlignTop);
+    layout->addWidget(lbMaxWeight, 2, 0, 1, 1,  Qt::AlignLeft | Qt::AlignVCenter | Qt::AlignHCenter);
+    layout->addWidget(displayMaxWeight, 2, 1, Qt::AlignVCenter | Qt::AlignHCenter);
+    layout->addWidget(lbCurrentPercentage, 3, 0, Qt::AlignLeft | Qt::AlignVCenter | Qt::AlignHCenter);
+    layout->addWidget(displayCurrentWeight, 3, 1, Qt::AlignVCenter | Qt::AlignHCenter);
 
 
-    layout->addItem(new QSpacerItem(10, 10), 4, 0, 1, 3);
 
-    layout->addWidget(btOnOff, 5, 1, 1, 1);
-    layout->addItem(new QSpacerItem(10, 10), 6, 0, 1, 3);
-    layout->addWidget(btSettings, 7, 0, 1, 1, Qt::AlignBottom);
+    layout->addWidget(btOff, 5, 1);
+    layout->addWidget(btSettings, 7, 0, Qt::AlignBottom);
 
     setLayout(layout);
 
     connect(btSettings, &QPushButton::pressed, this, &MainPage::onButtonSettingsPressed);
-    connect(btOnOff, &QPushButton::pressed, this, &MainPage::onButtonOnOffPressed);
+    connect(btOff, &OffIcon::pressed, this, &MainPage::onButtonOnOffPressed);
 
     connect(&model, &Model::nameChanged, this, &MainPage::nameChanged);
     connect(&model, &Model::maxWeightChanged, this, &MainPage::maxWeightChanged);
@@ -97,8 +98,7 @@ MainPage::MainPage(QWidget *parent) : QWidget(parent), model(Model::getInstance(
 }
 
 
-MainPage::~MainPage(){
-}
+MainPage::~MainPage(){}
 
 void MainPage::show(){
     displayed = true;
@@ -120,12 +120,8 @@ void MainPage::onButtonSettingsPressed(){
 }
 
 void MainPage::onButtonOnOffPressed(){
-    isOn = !isOn;
-    if(isOn){
-        btOnOff->setText("Off");
-    }else{
-        btOnOff->setText("On");
-    }
+    isOn = btOff->isActive();
+
 }
 
 void MainPage::nameChanged(QString name){

@@ -32,6 +32,7 @@
 #include <QLineEdit>
 #include <QPushButton>
 #include <QSlider>
+#include <QCheckBox>
 #include "model.h"
 
 #include "esp32.h"

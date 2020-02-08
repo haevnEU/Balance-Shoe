@@ -19,11 +19,13 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
  * IN THE SOFTWARE.
  */
+#include "officon.h"
 #include "pagehandler.h"
 
 #include <QFile>
 
 PageHandler::PageHandler(QObject *parent) : QObject(parent), model(Model::getInstance()){
+
     mainPage = new MainPage();
     welcomePage = new WelcomePage();
     settingsPage = new SettingsPage();
@@ -35,6 +37,7 @@ PageHandler::PageHandler(QObject *parent) : QObject(parent), model(Model::getIns
     mainPage->setStyleSheet(style);
     settingsPage->setStyleSheet(style);
     connectPage->setStyleSheet(style);
+
 }
 
 PageHandler::~PageHandler(){
@@ -53,6 +56,9 @@ void PageHandler::requestPage(page which){
     welcomePage->hide();
     settingsPage->hide();
     connectPage->hide();
+
+
+
     if(!Model::getInstance().isFirstRun() && !ESP32::getInstance().isDeviceConnected()){
         connectPage->show();
     }else{

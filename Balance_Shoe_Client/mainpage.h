@@ -35,10 +35,11 @@
 #include "model.h"
 #include <QSoundEffect>
 #include <QMediaPlayer>
+#include "officon.h"
+
 class MainPage : public QWidget{
 
     Q_OBJECT
-
 
 private:
 
@@ -47,7 +48,7 @@ private:
     bool isOn;
 
     QPushButton* btSettings;
-    QPushButton* btOnOff;
+    OffIcon* btOff;
 
     QLineEdit* displayMaxWeight;
     QLineEdit* displayCurrentWeight;

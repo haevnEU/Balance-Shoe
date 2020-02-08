@@ -37,6 +37,9 @@ WelcomePage::WelcomePage(QWidget *parent) : QWidget(parent), model(Model::getIns
     QLabel* lbMaxWeight = new QLabel("Maximales Gewicht: ", this);
     QLabel* lbInfoText = new QLabel("Gib deine Basics ein.", this);
 
+    lbName->setFixedWidth(150);
+    lbMaxWeight->setFixedWidth(150);
+
     QFont font = lbWelcome->font();
     QGridLayout* layout = new QGridLayout(this);
 
@@ -46,34 +49,36 @@ WelcomePage::WelcomePage(QWidget *parent) : QWidget(parent), model(Model::getIns
 
     font.setPointSize(32);
     lbWelcome->setFont(font);
-    lbWelcome->setAlignment(Qt::AlignCenter);
+    lbWelcome->setAlignment(Qt::AlignHCenter);
     layout->addWidget(lbWelcome, 0, 0, 1, 3);
 
     font.setPointSize(24);
     lbInfoText->setFont(font);
-    lbInfoText->setAlignment(Qt::AlignCenter);
+    lbInfoText->setAlignment(Qt::AlignHCenter);
     layout->addWidget(lbInfoText, 1, 0, 1, 3);
 
     font.setPointSize(16);
 
     lbError->setFont(font);
-    lbError->setAlignment(Qt::AlignCenter);
+    lbError->setAlignment(Qt::AlignHCenter);
     layout->addWidget(lbError, 2, 0, 1, 3);
 
     lbName->setFont(font);
     lbName->setAlignment(Qt::AlignLeft);
-    layout->addWidget(lbName, 3, 0, 1, 1);
+    layout->addWidget(lbName, 3, 0);
     layout->addWidget(inName, 3, 1, 1, 2);
 
 
 
     lbMaxWeight->setFont(font);
     lbMaxWeight->setAlignment(Qt::AlignLeft);
-    layout->addWidget(lbMaxWeight, 4, 0, 1, 1);
+    layout->addWidget(lbMaxWeight, 4, 0);
     layout->addWidget(inMaxWeight, 4, 1, 1, 2);
 
 
-    layout->addWidget(btNext, 11, 1, 1, 1);
+    layout->addWidget(new ConnectPage("", false, &font, this), 5, 0, 1, 3);
+
+    layout->addWidget(btNext, 11, 2, 1, 1);
 
     connect(btNext, &QPushButton::pressed, this, &WelcomePage::buttonNextPressed);
 
@@ -83,9 +88,6 @@ WelcomePage::WelcomePage(QWidget *parent) : QWidget(parent), model(Model::getIns
     btNext->setFlat(true);
 
     btNext->setIcon(QIcon(":/icons/res/baseline_navigate_next_white.png"));
-
-
-    layout->addWidget(new ConnectPage("", false, &font, this), 5, 0, 5, 5);
 
 }
 

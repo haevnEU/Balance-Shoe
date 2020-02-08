@@ -2,19 +2,27 @@
 #include "pagehandler.h"
 
 #include <QGridLayout>
+#include <QPainter>
 #include <qlabel.h>
-
+#include <qtimer.h>
+#include <circleprogressbar.h>
 ConnectPage::ConnectPage(QString text, bool isSettingsPage, QFont* font, QWidget *parent) : QWidget(parent), model(Model::getInstance()), esp(ESP32::getInstance()){
 
+    progressDeviceSearch = new CircleProgressBar(50);
+    progressDeviceTested = new CircleProgressBar(50);
+    progressDeviceFound = new CircleProgressBar(50);
+
     btSearch = new QPushButton(this);
-    btDeviceTest = new QPushButton(this);
-    btDeviceFound = new QPushButton(this);
-    btDeviceConnected = new QPushButton(this);
 
     QLabel* lbWelcome = new QLabel(text, this);
     QLabel* lbDeviceTested = new QLabel("Test: ", this);
     QLabel* lbDeviceFound = new QLabel("Gefunden: ", this);
     QLabel* lbDeviceConnected = new QLabel("Verbunden: ", this);
+
+    lbWelcome->setFixedWidth(200);
+    lbDeviceTested->setFixedWidth(200);
+    lbDeviceFound->setFixedWidth(200);
+    lbDeviceConnected->setFixedWidth(200);
 
     QFont usedFont = nullptr != font ? *font : lbWelcome->font();
     QGridLayout* layout = new QGridLayout(this);
@@ -34,64 +42,53 @@ ConnectPage::ConnectPage(QString text, bool isSettingsPage, QFont* font, QWidget
     layout->addWidget(lbWelcome, 0, 0, 1, 3);
     layout->addWidget(btSearch, 6, 1, 1, 1);
     layout->addWidget(lbDeviceFound, 8, 0, Qt::AlignLeft);
-    layout->addWidget(btDeviceFound, 8, 1, Qt::AlignLeft);
+    layout->addWidget(progressDeviceSearch, 8, 1, Qt::AlignVCenter | Qt::AlignHCenter);
 
     layout->addWidget(lbDeviceConnected, 9, 0, Qt::AlignLeft);
-    layout->addWidget(btDeviceConnected, 9, 1, Qt::AlignLeft);
+    layout->addWidget(progressDeviceFound, 9, 1, Qt::AlignVCenter | Qt::AlignHCenter);
 
     layout->addWidget(lbDeviceTested, 10, 0, Qt::AlignLeft);
-    layout->addWidget(btDeviceTest, 10, 1, Qt::AlignLeft);
+    layout->addWidget(progressDeviceTested, 10, 1, Qt::AlignVCenter | Qt::AlignHCenter);
 
     connect(btSearch, &QPushButton::pressed, this, &ConnectPage::buttonSearchPressed);
 
     setLayout(layout);
 
     btSearch->setFlat(true);
-    btDeviceTest->setFlat(true);
-    btDeviceFound->setFlat(true);
-    btDeviceConnected->setFlat(true);
 
 
     btSearch->setToolTip("Sohle suchen.");
-    btDeviceTest->setIcon(QIcon(":/icons/res/baseline_schedule_white.png"));
-    btDeviceFound->setIcon(QIcon(":/icons/res/baseline_schedule_white.png"));
-    btDeviceConnected->setIcon(QIcon(":/icons/res/baseline_schedule_white.png"));
     btSearch->setIcon(QIcon(":/icons/res/baseline_bluetooth_searching_white.png"));
 
 #ifdef Q_OS_MACOS
     btSearch->setIconSize(QSize(50, 50));
     btSearch->setFixedSize(QSize(50, 50));
-    btDeviceTest->setIconSize(QSize(50, 50));
-    btDeviceTest->setFixedSize(QSize(50, 50));
-    btDeviceFound->setIconSize(QSize(50, 50));
-    btDeviceFound->setFixedSize(QSize(50, 50));
-    btDeviceConnected->setIconSize(QSize(50, 50));
-    btDeviceConnected->setFixedSize(QSize(50, 50));
+
+    progressDeviceFound->setRadius(50);
+    progressDeviceSearch->setRadius(50);
+    progressDeviceTested->setRadius(50);
 #else
 
     btSearch->setIconSize(QSize(100, 100));
     btSearch->setFixedSize(QSize(100, 100));
-    btDeviceTest->setIconSize(QSize(100, 100));
-    btDeviceTest->setFixedSize(QSize(100, 100));
-    btDeviceFound->setIconSize(QSize(100, 100));
-    btDeviceFound->setFixedSize(QSize(100, 100));
-    btDeviceConnected->setIconSize(QSize(100, 100));
-    btDeviceConnected->setFixedSize(QSize(100, 100));
+
+    progressDeviceFound->setRadius(100);
+    progressDeviceSearch->setRadius(100);
+    progressDeviceTested->setRadius(100);
 #endif
 
     if(isSettingsPage){
-#ifdef Q_OS_MACOS
         btNext = new QPushButton(this);
         layout->addWidget(btNext, 11, 1, 1, 1);
-
         connect(btNext, &QPushButton::pressed, this, &ConnectPage::buttonNextPressed);
         btNext->setFlat(true);
         btNext->setIcon(QIcon(":/icons/res/baseline_navigate_next_white.png"));
+#ifdef Q_OS_MACOS
+
         btNext->setIconSize(QSize(50, 50));
         btNext->setFixedSize(QSize(50, 50));
 #else
         btNext->setIconSize(QSize(100, 100));
-        btNext->setFixedSize(QSize(100, 100));
 #endif
     btNext->setEnabled(false);
         connect(&ESP32::getInstance(), &ESP32::deviceConnected, this, [=]{
@@ -111,28 +108,60 @@ ConnectPage::ConnectPage(QString text, bool isSettingsPage, QFont* font, QWidget
     }
     connect(btSearch, &QPushButton::pressed, &esp, &ESP32::discover);
 
+        connect(btSearch,&QPushButton::pressed, this, [=]{
+            progressDeviceSearch->setIntermidate();
+            progressDeviceFound->setIntermidate();
+            progressDeviceTested->setIntermidate();
+
+            progressDeviceSearch->start();
+            QTimer* tmr = new QTimer(this);
+            tmr->setInterval(500);
+            QTimer* tmr2 = new QTimer(this);
+            tmr2->setInterval(1000);
+
+            connect(tmr, &QTimer::timeout, this, [=]{
+                progressDeviceFound->start();
+                tmr->stop();
+            });
+            connect(tmr2, &QTimer::timeout, this, [=]{
+                progressDeviceTested->start();
+                tmr2->stop();
+            });
+            tmr->start();
+            tmr2->start();
+        });
+
+
     connect(&esp, &ESP32::deviceFound, this, [=]{
-            btDeviceFound->setIcon(QIcon(":/icons/res/baseline_check_circle_outline_white.png"));
+            progressDeviceSearch->setSucceed();
     });
 
     connect(&esp, &ESP32::deviceNotFound, this, [=]{
-            btDeviceFound->setIcon(QIcon(":/icons/res/baseline_highlight_off_white.png"));
+        progressDeviceSearch->setFail();
+        progressDeviceFound->setFail();
+        progressDeviceTested->setFail();
     });
 
     connect(&esp, &ESP32::serviceFound, this, [=]{
-            btDeviceConnected->setIcon(QIcon(":/icons/res/baseline_check_circle_outline_white.png"));
+        progressDeviceFound->setSucceed();
     });
 
     connect(&esp, &ESP32::serviceNotFound, this, [=]{
-            btDeviceConnected->setIcon(QIcon(":/icons/res/baseline_highlight_off_white.png"));
+        progressDeviceFound->setFail();
+        progressDeviceTested->setFail();
     });
 
     connect(&esp, &ESP32::characteristicsFound, this, [=]{
-        btDeviceTest->setIcon(QIcon(":/icons/res/baseline_check_circle_outline_white.png"));
+        progressDeviceTested->setSucceed();
     });
 
     connect(&esp, &ESP32::characteristicsNotFound, this, [=]{
-        btDeviceTest->setIcon(QIcon(":/icons/res/baseline_highlight_off_white.png"));
+        progressDeviceTested->setFail();
+    });
+    connect(&esp, &ESP32::deviceTimeout, this, [=]{
+        progressDeviceSearch->setFail();
+        progressDeviceFound->setFail();
+        progressDeviceTested->setFail();
     });
 }
 

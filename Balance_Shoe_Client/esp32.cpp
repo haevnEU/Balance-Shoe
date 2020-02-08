@@ -49,6 +49,14 @@ ESP32::ESP32(QObject *parent) : QObject(parent){
         }
     });
 
+    timeout = new QTimer();
+    timeout->setInterval(30*1000);
+
+    connect(timeout, &QTimer::timeout, this, [=]{
+        timeout->stop();
+        discoveryAgent->stop();
+        emit deviceTimeout();
+    });
     connect(this, &ESP32::deviceFound, this, &ESP32::connectTo);
 }
 
@@ -60,6 +68,7 @@ ESP32::~ESP32(){
 
 void ESP32::discover(){
     discoveryAgent->start();
+    timeout->start();
 }
 
 void ESP32::discoveryFinished(){
@@ -185,6 +194,7 @@ void ESP32::characteristicFound(){
     qDebug() << charCounter;
     if(charCounter >= 2){
         emit characteristicsFound();
+        timeout->stop();
     }
 }
 
