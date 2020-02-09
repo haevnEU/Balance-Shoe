@@ -34,6 +34,7 @@
 
 #include "model.h"
 #include "esp32.h"
+#include "arrowbutton.h"
 
 class WelcomePage : public QWidget{
 
@@ -45,7 +46,7 @@ private:
     QLineEdit* inMaxWeight;
     QLabel* lbError;
 
-    QPushButton* btNext;
+    ArrowButton* btNext;
     bool displayed;
     Model& model;
     ESP32& esp;

@@ -36,6 +36,7 @@
 #include <QSoundEffect>
 #include <QMediaPlayer>
 #include "officon.h"
+#include "settingsbutton.h"
 
 class MainPage : public QWidget{
 
@@ -47,7 +48,7 @@ private:
 
     bool isOn;
 
-    QPushButton* btSettings;
+    SettingsButton* btSettings;
     OffIcon* btOff;
 
     QLineEdit* displayMaxWeight;

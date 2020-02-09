@@ -7,7 +7,6 @@ class OffIcon : public QWidget
 {    Q_OBJECT
 
      int value;
-     QTimer* tmr2;
      QColor color;
      int radius = 50;
      bool active;

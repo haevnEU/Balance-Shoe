@@ -7,9 +7,7 @@
 CircleProgressBar::CircleProgressBar(QWidget* parent) : CircleProgressBar(50, parent){}
 
 CircleProgressBar::CircleProgressBar(int radius, QWidget* parent) : QWidget(parent), value(0) {
-    this->radius = radius;
-    setMinimumSize(radius + 2, radius + 2);
-    setMaximumSize(radius + 2, radius + 2);
+    setRadius(radius);
     tmr2 = new QTimer();
     tmr2->setInterval(100);
 
@@ -36,7 +34,7 @@ void CircleProgressBar::paintEvent(QPaintEvent *) {
 
     pen.setCapStyle(Qt::FlatCap);
     pen.setColor(color);
-    pen.setWidth(4);
+    pen.setWidth(radius * 0.04);
     p.strokePath(path, pen);
 }
 
@@ -54,10 +52,14 @@ void CircleProgressBar::setSucceed(){
     update();
 }
 
-void CircleProgressBar::setRadius(int r){
-    radius = r;
-    setMinimumSize(radius + 2, radius + 2);
-    setMaximumSize(radius + 2, radius + 2);
+void CircleProgressBar::setRadius(int radius){
+#ifdef Q_OS_ANDROID
+    this->radius = radius * 3;
+#else
+    this->radius = radius * 2;
+#endif
+    setMinimumSize(this->radius + 10, this->radius + 10);
+    setMaximumSize(this->radius + 10, this->radius + 10);
 }
 
 void CircleProgressBar::setColor(int r, int g, int b, int a){

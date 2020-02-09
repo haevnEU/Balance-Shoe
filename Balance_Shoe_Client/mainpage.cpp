@@ -32,8 +32,8 @@ MainPage::MainPage(QWidget *parent) : QWidget(parent), model(Model::getInstance(
 
     QGridLayout* layout = new QGridLayout();
 
-    btOff = new OffIcon(this);
-    btSettings = new QPushButton("Settings", this);
+    btOff = new OffIcon(25, this);
+    btSettings = new SettingsButton(25, this);
 
     lbName = new QLabel("Name", this);
     lbCurrentBatteryPercentage = new QLabel("", this);
@@ -46,8 +46,7 @@ MainPage::MainPage(QWidget *parent) : QWidget(parent), model(Model::getInstance(
 
     QLabel* lbMaxWeight = new QLabel("Maximum: ", this);
 
-    lbName->setFixedWidth(150);
-    lbMaxWeight->setFixedWidth(150);
+
     displayed = false;
 
     layout->addWidget(lbName, 0, 0, Qt::AlignTop | Qt::AlignLeft);
@@ -60,12 +59,12 @@ MainPage::MainPage(QWidget *parent) : QWidget(parent), model(Model::getInstance(
 
 
 
-    layout->addWidget(btOff, 5, 1);
-    layout->addWidget(btSettings, 7, 0, Qt::AlignBottom);
+    layout->addWidget(btOff, 5, 1, Qt::AlignVCenter | Qt::AlignHCenter);
+    layout->addWidget(btSettings, 5, 0, Qt::AlignVCenter | Qt::AlignHCenter);
 
     setLayout(layout);
 
-    connect(btSettings, &QPushButton::pressed, this, &MainPage::onButtonSettingsPressed);
+    connect(btSettings, &SettingsButton::pressed, this, &MainPage::onButtonSettingsPressed);
     connect(btOff, &OffIcon::pressed, this, &MainPage::onButtonOnOffPressed);
 
     connect(&model, &Model::nameChanged, this, &MainPage::nameChanged);
@@ -74,12 +73,12 @@ MainPage::MainPage(QWidget *parent) : QWidget(parent), model(Model::getInstance(
     connect(&model, &Model::currentWeightChanged, this, &MainPage::currentWeight);
 
 
-    warner = new QSound("qrc:/sound/res/nebelhorn.wav");
+    warner = new QSound("qrc:/sound/res/peeeeeep.wav");
 
     connect(&model, &Model::maximumReached, this, [=]{
         if(isOn){
             if(warner->isFinished()){
-                warner->play("qrc:/sound/res/nebelhorn.wav");
+                warner->play();
             }
         }
     });
@@ -121,7 +120,9 @@ void MainPage::onButtonSettingsPressed(){
 
 void MainPage::onButtonOnOffPressed(){
     isOn = btOff->isActive();
-
+    if(!btOff->isActive()){
+        warner->stop();
+    }
 }
 
 void MainPage::nameChanged(QString name){

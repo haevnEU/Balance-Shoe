@@ -17,6 +17,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    arrowbutton.cpp \
     circleprogressbar.cpp \
     connectpage.cpp \
     esp32.cpp \
@@ -25,10 +26,12 @@ SOURCES += \
     model.cpp \
     officon.cpp \
     pagehandler.cpp \
+    settingsbutton.cpp \
     settingspage.cpp \
     welcomepage.cpp
 
 HEADERS += \
+    arrowbutton.h \
     circleprogressbar.h \
     connectpage.h \
     esp32.h \
@@ -36,6 +39,7 @@ HEADERS += \
     model.h \
     officon.h \
     pagehandler.h \
+    settingsbutton.h \
     settingspage.h \
     welcomepage.h
 

@@ -19,10 +19,6 @@ ConnectPage::ConnectPage(QString text, bool isSettingsPage, QFont* font, QWidget
     QLabel* lbDeviceFound = new QLabel("Gefunden: ", this);
     QLabel* lbDeviceConnected = new QLabel("Verbunden: ", this);
 
-    lbWelcome->setFixedWidth(200);
-    lbDeviceTested->setFixedWidth(200);
-    lbDeviceFound->setFixedWidth(200);
-    lbDeviceConnected->setFixedWidth(200);
 
     QFont usedFont = nullptr != font ? *font : lbWelcome->font();
     QGridLayout* layout = new QGridLayout(this);
@@ -78,19 +74,13 @@ ConnectPage::ConnectPage(QString text, bool isSettingsPage, QFont* font, QWidget
 #endif
 
     if(isSettingsPage){
-        btNext = new QPushButton(this);
+        btNext = new ArrowButton(ArrowButtonDirection::Right, this);
         layout->addWidget(btNext, 11, 1, 1, 1);
-        connect(btNext, &QPushButton::pressed, this, &ConnectPage::buttonNextPressed);
-        btNext->setFlat(true);
-        btNext->setIcon(QIcon(":/icons/res/baseline_navigate_next_white.png"));
-#ifdef Q_OS_MACOS
+        connect(btNext, &ArrowButton::pressed, this, &ConnectPage::buttonNextPressed);
 
-        btNext->setIconSize(QSize(50, 50));
-        btNext->setFixedSize(QSize(50, 50));
-#else
-        btNext->setIconSize(QSize(100, 100));
-#endif
-    btNext->setEnabled(false);
+        btNext->setRadius(25);
+        btNext->setEnabled(false);
+
         connect(&ESP32::getInstance(), &ESP32::deviceConnected, this, [=]{
             btNext->setEnabled(true);
         });
@@ -163,6 +153,7 @@ ConnectPage::ConnectPage(QString text, bool isSettingsPage, QFont* font, QWidget
         progressDeviceFound->setFail();
         progressDeviceTested->setFail();
     });
+
 }
 
 ConnectPage::~ConnectPage(){

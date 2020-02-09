@@ -5,19 +5,20 @@
 OffIcon::OffIcon(QWidget* parent) : OffIcon(50, parent){}
 
 OffIcon::OffIcon(int radius, QWidget* parent) : QWidget(parent), value(0) {
-    this->radius = radius;
-    setMinimumSize(2 * radius, 2 * radius);
-    setMaximumSize(2 * radius, 2 * radius);
-
+    setRadius(radius);
     color.setRgb(0x03, 0xC2, 0xFC);
     active = false;
     off();
 }
 
-void OffIcon::setRadius(int value) {
-    this->radius = value;
-    setMinimumSize(2 * radius, 2 * radius);
-    setMaximumSize(2 * radius, 2 * radius);
+void OffIcon::setRadius(int radius) {
+#ifdef Q_OS_ANDROID
+    this->radius = radius * 3;
+#else
+    this->radius = radius * 2;
+#endif
+    setMinimumSize(this->radius + 10, this->radius + 10);
+    setMaximumSize(this->radius + 10, this->radius + 10);
     update();
 }
 
@@ -26,6 +27,7 @@ void OffIcon::paintEvent(QPaintEvent *) {
     QPainterPath path;
     QPen pen;
     QLine line;
+    int radius = this->radius * 0.9;
     line.setLine(radius * 0.5, 0, radius * 0.5, radius * 0.75);
     p.translate(2, 2);
     p.setRenderHint(QPainter::Antialiasing);

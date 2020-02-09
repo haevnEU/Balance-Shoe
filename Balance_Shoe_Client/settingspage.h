@@ -36,6 +36,7 @@
 #include "model.h"
 
 #include "esp32.h"
+#include "arrowbutton.h"
 class SettingsPage : public QWidget{
 
     Q_OBJECT
@@ -49,8 +50,8 @@ private:
     QLineEdit* inMaxWeight;
     QLineEdit* inName;
 
-    QPushButton* btSave;
-    QPushButton* btDiscard;
+    ArrowButton* btSave;
+    ArrowButton* btDiscard;
     QLabel* lbName;
     QLabel* lbBattery;
     Model& model;

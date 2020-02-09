@@ -35,8 +35,8 @@ SettingsPage::SettingsPage(QWidget *parent) : QWidget(parent), model(Model::getI
     inMaxWeight = new QLineEdit(this);
     inMaxWeight->setValidator(new QIntValidator(0, 500, this));
 
-    btSave = new QPushButton(this);
-    btDiscard = new QPushButton(this);
+    btSave = new ArrowButton(ArrowButtonDirection::Accept, this);
+    btDiscard = new ArrowButton(ArrowButtonDirection::Cross, this);
 
     lbBattery = new QLabel(this);
     lbName = new QLabel();
@@ -63,25 +63,11 @@ SettingsPage::SettingsPage(QWidget *parent) : QWidget(parent), model(Model::getI
     inName->setText(model.getName());
     setLayout(layout);
 
-    btSave->setFlat(true);
-    btDiscard->setFlat(true);
-    btSave->setIcon(QIcon(":/icons/res/baseline_check_circle_outline_white.png"));
-    btDiscard->setIcon(QIcon(":/icons/res/baseline_highlight_off_white.png"));
+
     displayed = false;
 
-
-#ifdef Q_OS_MACOS
-    btSave->setIconSize(QSize(50, 50));
-    btSave->setFixedSize(QSize(50, 50));
-    btDiscard->setIconSize(QSize(50, 50));
-    btDiscard->setFixedSize(QSize(50, 50));
-#else
-
-    btSave->setIconSize(QSize(100, 100));
-    btSave->setFixedSize(QSize(100, 100));
-    btDiscard->setIconSize(QSize(100, 100));
-    btDiscard->setFixedSize(QSize(100, 100));
-#endif
+    btSave->setRadius(25);
+    btDiscard->setRadius(25);
 
     lbName->setText(model.getName());
     lbBattery->setText(QString::number(model.getBatteryPercentage()).append(" %"));
@@ -91,32 +77,15 @@ SettingsPage::SettingsPage(QWidget *parent) : QWidget(parent), model(Model::getI
     layout->addWidget(btDiscard, 11, 0, Qt::AlignBottom);
     layout->addWidget(btSave, 11, 2, Qt::AlignBottom);
 
-    connect(btSave, &QPushButton::pressed, this, [=]{
+    connect(btSave, &ArrowButton::pressed, this, [=]{
         model.setMaxWeight(inMaxWeight->text().toInt());
         model.setName(inName->text());
         model.save();
         PageHandler::getInstance().requestPage(page::mainPage);
     });
 
-    connect(btDiscard, &QPushButton::pressed, this, [=]{
+    connect(btDiscard, &ArrowButton::pressed, this, [=]{
         PageHandler::getInstance().requestPage(page::mainPage);
-    });
-    QPushButton* btDeviceSettings = new QPushButton("Device Settings");
-    layout->addWidget(btDeviceSettings, 20, 1, 1, 1, Qt::AlignBottom);
-    connect(btDeviceSettings, &QPushButton::pressed, this,[=]{
-        bool ok;
-            QString text = QInputDialog::getText(this, "Service Pin",
-                                                 "Für diese Aktion wird der Service pin benötigt.", QLineEdit::Normal,
-                                                 "", &ok);
-            if (ok && !text.isEmpty()) {
-                int pin = text.toInt();
-                if(pin == servicePin){
-                    QMessageBox::information(this, "Authentifiziert", "Geräte Einstellungen sichtbar");
-                }else{
-
-                    QMessageBox::warning(this, "Nicht authentifiziert", "Der Service Pin ist falsch");
-                }
-            }
     });
 
     setLayout(layout);

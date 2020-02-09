@@ -2,27 +2,11 @@
     <qresource prefix="/icons">
         <file>res/baseline_bluetooth_searching_black.png</file>
         <file>res/baseline_bluetooth_searching_white.png</file>
-        <file>res/baseline_check_circle_outline_black.png</file>
-        <file>res/baseline_check_circle_outline_white.png</file>
-        <file>res/baseline_error_outline_black.png</file>
-        <file>res/baseline_error_outline_white.png</file>
-        <file>res/baseline_highlight_off_black.png</file>
-        <file>res/baseline_highlight_off_white.png</file>
-        <file>res/baseline_keyboard_backspace_black.png</file>
-        <file>res/baseline_keyboard_backspace_white.png</file>
-        <file>res/baseline_navigate_before_black.png</file>
-        <file>res/baseline_navigate_before_white.png</file>
-        <file>res/baseline_navigate_next_black.png</file>
-        <file>res/baseline_navigate_next_white.png</file>
-        <file>res/baseline_power_settings_new_black.png</file>
-        <file>res/baseline_power_settings_new_white.png</file>
-        <file>res/baseline_schedule_black.png</file>
-        <file>res/baseline_schedule_white.png</file>
     </qresource>
     <qresource prefix="/style">
         <file>res/QTDark.qss</file>
     </qresource>
     <qresource prefix="/sound">
-        <file>res/nebelhorn.wav</file>
+        <file>res/peeeeeep.wav</file>
     </qresource>
 </RCC>

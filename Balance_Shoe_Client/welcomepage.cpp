@@ -29,7 +29,9 @@ WelcomePage::WelcomePage(QWidget *parent) : QWidget(parent), model(Model::getIns
     inName = new QLineEdit(this);
     inMaxWeight = new QLineEdit(this);
 
-    btNext = new QPushButton(this);
+    btNext = new ArrowButton(ArrowButtonDirection::Right, this);
+    btNext->setRadius(25);
+    btNext->setEnabled(false);
     lbError = new QLabel("", this);
 
     QLabel* lbName = new QLabel("Name: ", this);
@@ -37,8 +39,6 @@ WelcomePage::WelcomePage(QWidget *parent) : QWidget(parent), model(Model::getIns
     QLabel* lbMaxWeight = new QLabel("Maximales Gewicht: ", this);
     QLabel* lbInfoText = new QLabel("Gib deine Basics ein.", this);
 
-    lbName->setFixedWidth(150);
-    lbMaxWeight->setFixedWidth(150);
 
     QFont font = lbWelcome->font();
     QGridLayout* layout = new QGridLayout(this);
@@ -74,20 +74,23 @@ WelcomePage::WelcomePage(QWidget *parent) : QWidget(parent), model(Model::getIns
     lbMaxWeight->setAlignment(Qt::AlignLeft);
     layout->addWidget(lbMaxWeight, 4, 0);
     layout->addWidget(inMaxWeight, 4, 1, 1, 2);
+    ConnectPage* connectionpage = new ConnectPage("", false, &font, this);
 
+    connect(connectionpage, &ConnectPage::deviceConnected, this, [=]{
+        btNext->setEnabled(true);
+    });
+    connect(connectionpage, &ConnectPage::deviceDisconnected, this, [=]{
+        btNext->setEnabled(true);
+    });
 
-    layout->addWidget(new ConnectPage("", false, &font, this), 5, 0, 1, 3);
+    layout->addWidget(connectionpage, 5, 0, 1, 3);
 
     layout->addWidget(btNext, 11, 2, 1, 1);
 
-    connect(btNext, &QPushButton::pressed, this, &WelcomePage::buttonNextPressed);
+    connect(btNext, &ArrowButton::pressed, this, &WelcomePage::buttonNextPressed);
 
     inName->setText(model.getName());
     setLayout(layout);
-
-    btNext->setFlat(true);
-
-    btNext->setIcon(QIcon(":/icons/res/baseline_navigate_next_white.png"));
 
 }
 

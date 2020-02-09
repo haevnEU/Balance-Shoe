@@ -74,6 +74,7 @@ bool Model::isFirstRun(){
 
 void Model::save(){
 
+    firstRun = false;
     QString path = "model.bsc";
     QString data = "";
     data.append("Name=").append(getName()).append("\n");

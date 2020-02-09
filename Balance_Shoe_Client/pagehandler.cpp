@@ -19,6 +19,7 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
  * IN THE SOFTWARE.
  */
+#include "arrowbutton.h"
 #include "officon.h"
 #include "pagehandler.h"
 
@@ -51,13 +52,13 @@ PageHandler::~PageHandler(){
     delete connectPage;
 }
 
+#include "settingsbutton.h"
+
 void PageHandler::requestPage(page which){
     mainPage->hide();
     welcomePage->hide();
     settingsPage->hide();
     connectPage->hide();
-
-
 
     if(!Model::getInstance().isFirstRun() && !ESP32::getInstance().isDeviceConnected()){
         connectPage->show();
