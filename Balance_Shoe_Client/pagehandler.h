@@ -41,6 +41,11 @@ public:
         return instance;
     }
 
+#ifdef Q_OS_ANDROID
+    static const int multiplier = 2;
+#else
+    static const int multiplier = 1;
+#endif
 private:
 
     MainPage* mainPage;

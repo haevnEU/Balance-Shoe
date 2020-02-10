@@ -1,4 +1,5 @@
 #include "officon.h"
+#include "pagehandler.h"
 
 #include <QPainter>
 
@@ -12,13 +13,9 @@ OffIcon::OffIcon(int radius, QWidget* parent) : QWidget(parent), value(0) {
 }
 
 void OffIcon::setRadius(int radius) {
-#ifdef Q_OS_ANDROID
-    this->radius = radius * 3;
-#else
-    this->radius = radius * 2;
-#endif
-    setMinimumSize(this->radius + 10, this->radius + 10);
-    setMaximumSize(this->radius + 10, this->radius + 10);
+
+    this->radius = radius * 2 * PageHandler::multiplier;
+    setFixedSize(this->radius + static_cast<int>(this->radius * 0.0), this->radius + static_cast<int>(this->radius * 0.0));
     update();
 }
 
@@ -28,7 +25,7 @@ void OffIcon::paintEvent(QPaintEvent *) {
     QPen pen;
     QLine line;
     int radius = this->radius * 0.9;
-    line.setLine(radius * 0.5, 0, radius * 0.5, radius * 0.75);
+    line.setLine(radius * 0.5, -radius *0.5, radius * 0.5, radius * 0.75);
     p.translate(2, 2);
     p.setRenderHint(QPainter::Antialiasing);
     //path.arcTo(QRectF(0, radius* 0.3, radius, radius), 60 * 16, -300 * 16);
@@ -37,7 +34,7 @@ void OffIcon::paintEvent(QPaintEvent *) {
     pen.setWidth(4);
     p.setPen(pen);
     p.drawLine(line);
-    p.drawArc(0, radius * 0.3, radius, radius, 60 * 16 , -16 * 300);
+    p.drawArc(0, radius * 0.1, radius, radius, 60 * 16 , -16 * 300);
     p.strokePath(path, pen);
 }
 

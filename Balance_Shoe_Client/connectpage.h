@@ -9,6 +9,7 @@
 #include <QWidget>
 #include "circleprogressbar.h"
 #include "arrowbutton.h"
+#include "bluetoothbutton.h"
 class ConnectPage : public QWidget{
 
     Q_OBJECT
@@ -19,7 +20,7 @@ private:
     CircleProgressBar* progressDeviceFound;
     CircleProgressBar* progressDeviceTested;
 
-    QPushButton* btSearch;
+    BluetoothButton* btSearch;
     //QPushButton* btNext;
     ArrowButton* btNext;
     Model& model;

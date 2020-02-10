@@ -8,11 +8,11 @@
 #include <circleprogressbar.h>
 ConnectPage::ConnectPage(QString text, bool isSettingsPage, QFont* font, QWidget *parent) : QWidget(parent), model(Model::getInstance()), esp(ESP32::getInstance()){
 
-    progressDeviceSearch = new CircleProgressBar(50);
-    progressDeviceTested = new CircleProgressBar(50);
-    progressDeviceFound = new CircleProgressBar(50);
+    progressDeviceSearch = new CircleProgressBar(25);
+    progressDeviceTested = new CircleProgressBar(25);
+    progressDeviceFound = new CircleProgressBar(25);
 
-    btSearch = new QPushButton(this);
+    btSearch = new BluetoothButton(25, this);
 
     QLabel* lbWelcome = new QLabel(text, this);
     QLabel* lbDeviceTested = new QLabel("Test: ", this);
@@ -46,32 +46,14 @@ ConnectPage::ConnectPage(QString text, bool isSettingsPage, QFont* font, QWidget
     layout->addWidget(lbDeviceTested, 10, 0, Qt::AlignLeft);
     layout->addWidget(progressDeviceTested, 10, 1, Qt::AlignVCenter | Qt::AlignHCenter);
 
-    connect(btSearch, &QPushButton::pressed, this, &ConnectPage::buttonSearchPressed);
+    connect(btSearch, &BluetoothButton::pressed, this, &ConnectPage::buttonSearchPressed);
 
     setLayout(layout);
 
-    btSearch->setFlat(true);
 
 
     btSearch->setToolTip("Sohle suchen.");
-    btSearch->setIcon(QIcon(":/icons/res/baseline_bluetooth_searching_white.png"));
 
-#ifdef Q_OS_MACOS
-    btSearch->setIconSize(QSize(50, 50));
-    btSearch->setFixedSize(QSize(50, 50));
-
-    progressDeviceFound->setRadius(50);
-    progressDeviceSearch->setRadius(50);
-    progressDeviceTested->setRadius(50);
-#else
-
-    btSearch->setIconSize(QSize(100, 100));
-    btSearch->setFixedSize(QSize(100, 100));
-
-    progressDeviceFound->setRadius(100);
-    progressDeviceSearch->setRadius(100);
-    progressDeviceTested->setRadius(100);
-#endif
 
     if(isSettingsPage){
         btNext = new ArrowButton(ArrowButtonDirection::Right, this);
@@ -96,9 +78,9 @@ ConnectPage::ConnectPage(QString text, bool isSettingsPage, QFont* font, QWidget
             emit deviceDisconnected();
         });
     }
-    connect(btSearch, &QPushButton::pressed, &esp, &ESP32::discover);
+    connect(btSearch, &BluetoothButton::pressed, &esp, &ESP32::discover);
 
-        connect(btSearch,&QPushButton::pressed, this, [=]{
+        connect(btSearch,&BluetoothButton::pressed, this, [=]{
             progressDeviceSearch->setIntermidate();
             progressDeviceFound->setIntermidate();
             progressDeviceTested->setIntermidate();

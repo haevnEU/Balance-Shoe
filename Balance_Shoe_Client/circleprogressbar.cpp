@@ -1,4 +1,5 @@
 #include "circleprogressbar.h"
+#include "pagehandler.h"
 
 #include <QPainter>
 #include <QTimer>
@@ -53,13 +54,11 @@ void CircleProgressBar::setSucceed(){
 }
 
 void CircleProgressBar::setRadius(int radius){
-#ifdef Q_OS_ANDROID
-    this->radius = radius * 3;
-#else
-    this->radius = radius * 2;
-#endif
-    setMinimumSize(this->radius + 10, this->radius + 10);
-    setMaximumSize(this->radius + 10, this->radius + 10);
+
+    this->radius = radius * 2* PageHandler::multiplier;
+    setFixedSize(this->radius + static_cast<int>(this->radius * 0.1), this->radius + static_cast<int>(this->radius * 0.1));
+
+    update();
 }
 
 void CircleProgressBar::setColor(int r, int g, int b, int a){

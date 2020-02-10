@@ -1,8 +1,4 @@
 <RCC>
-    <qresource prefix="/icons">
-        <file>res/baseline_bluetooth_searching_black.png</file>
-        <file>res/baseline_bluetooth_searching_white.png</file>
-    </qresource>
     <qresource prefix="/style">
         <file>res/QTDark.qss</file>
     </qresource>

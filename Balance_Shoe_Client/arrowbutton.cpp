@@ -1,4 +1,5 @@
 #include "arrowbutton.h"
+#include "pagehandler.h"
 
 #include <QPainter>
 
@@ -55,14 +56,9 @@ bool ArrowButton::event(QEvent *event){
 }
 
 void ArrowButton::setRadius(int radius){
-#ifdef Q_OS_ANDROID
-    this->radius = radius * 4;
-#else
-    this->radius = radius * 2;
-#endif
 
-    setMinimumSize(2 * this->radius + 10, 2 * this->radius + 10);
-    setMaximumSize(2 * this->radius + 10, 2 * this->radius + 10);
+    this->radius = radius * 2 * PageHandler::multiplier;
+    setFixedSize(this->radius + static_cast<int>(this->radius * 0.1), 2 * this->radius + static_cast<int>(this->radius * 0.1));
     switch(dir){
     case ArrowButtonDirection::Right:
         verical->setP1(QPoint(static_cast<int>(0.25 * this->radius), static_cast<int>(0.5 * this->radius)));

@@ -29,16 +29,13 @@ public:
     explicit ArrowButton(ArrowButtonDirection dir, int radius, QWidget *parent = nullptr);
     void setRadius(int pp);
     void paintEvent(QPaintEvent *) override;
-  //  void mousePressEvent(QMouseEvent *event) override;
 public slots:
     void setEnabled(bool state);
 signals:
         void pressed();
 private:
         bool event(QEvent *event) override;
-signals:
 
-public slots:
 };
 
 #endif // ARROWBUTTON_H

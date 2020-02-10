@@ -18,6 +18,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     arrowbutton.cpp \
+    bluetoothbutton.cpp \
     circleprogressbar.cpp \
     connectpage.cpp \
     esp32.cpp \
@@ -32,6 +33,7 @@ SOURCES += \
 
 HEADERS += \
     arrowbutton.h \
+    bluetoothbutton.h \
     circleprogressbar.h \
     connectpage.h \
     esp32.h \

@@ -1,3 +1,4 @@
+#include "pagehandler.h"
 #include "settingsbutton.h"
 
 
@@ -56,14 +57,9 @@ bool SettingsButton::event(QEvent *event){
 }
 
 void SettingsButton::setRadius(int radius){
-#ifdef Q_OS_ANDROID
-    this->radius = radius * 4;
-#else
-    this->radius = radius * 2;
-#endif
 
-    setMinimumSize(2 * this->radius + 10, 2 * this->radius + 10);
-    setMaximumSize(2 * this->radius + 10, 2 * this->radius + 10);
+    this->radius = radius * 2 * PageHandler::multiplier;
+    setFixedSize(this->radius + static_cast<int>(this->radius * 0.1), this->radius + static_cast<int>(this->radius * 0.1));
 
     verical1->setP1(QPoint(static_cast<int>(0.25 * this->radius), static_cast<int>(0.25 * this->radius)));
     verical1->setP2(QPoint(static_cast<int>(0.25 * this->radius), static_cast<int>(0.75 * this->radius)));
@@ -79,6 +75,8 @@ void SettingsButton::setRadius(int radius){
     verical3->setP2(QPoint(static_cast<int>(0.75 * this->radius), static_cast<int>(0.75 * this->radius)));
     circle3->radius = static_cast<int>(0.05 * this->radius);
     circle3->center = QPoint(static_cast<int>(0.75 * this->radius), static_cast<int>((1-0.35) * this->radius));
+
+    update();
 }
 
 void SettingsButton::paintEvent(QPaintEvent* event){
@@ -93,7 +91,6 @@ void SettingsButton::paintEvent(QPaintEvent* event){
      pen.setColor(color);
      pen.setWidth(static_cast<int>(radius * 0.04));
      p.setPen(pen);
-
 
      p.drawLine(*verical1);
      p.drawLine(*verical2);

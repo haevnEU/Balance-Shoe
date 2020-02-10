@@ -52,7 +52,7 @@ PageHandler::~PageHandler(){
     delete connectPage;
 }
 
-#include "settingsbutton.h"
+#include "bluetoothbutton.h"
 
 void PageHandler::requestPage(page which){
     mainPage->hide();
